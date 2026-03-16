@@ -76,19 +76,16 @@ export default function Home() {
   return (
     <div className="bg-slate-50 min-h-screen">
       {/* Animated Hero Section */}
-      <section className="relative w-full pt-44 pb-48 lg:pt-52 lg:pb-56 overflow-hidden bg-linear-to-br from-blue-400 via-blue-700 to-slate-900 animate-gradient text-white">
-        {/* Background Image with low opacity */}
-        <div className="absolute inset-0 z-0 opacity-40 mix-blend-overlay">
-          <Image 
-            src="/images/banner-bg.jpg" 
-            alt="School background" 
-            fill
-            className="object-cover"
-            priority
-          />
-        </div>
-        {/* Extra overlay for contrast */}
-        <div className="absolute inset-0 z-0 bg-blue-900/10"></div>
+      <section 
+        className="relative w-full pt-44 pb-48 lg:pt-52 lg:pb-56 overflow-hidden bg-linear-to-r from-blue-300 via-blue-600 to-slate-900 animate-gradient text-white"
+        style={{ backgroundSize: '300% 300%' }}
+      >
+        {/* Fixed Background Image with lower opacity for parallax effect */}
+        <div 
+          className="absolute inset-0 z-0 opacity-30 mix-blend-overlay bg-[url('/images/banner-bg.jpg')] bg-cover bg-center bg-no-repeat bg-fixed"
+        ></div>
+        {/* Extra overlay for contrast and darkening */}
+        <div className="absolute inset-0 z-0 bg-black/10"></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
@@ -187,28 +184,28 @@ export default function Home() {
               <motion.div 
                 animate={{ y: [0, 15, 0], rotate: [0, 5, 0] }}
                 transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }}
-                className="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-4 z-30"
+                className="absolute -bottom-4 -left-2 sm:-bottom-6 sm:-left-6 bg-white p-3 sm:p-4 rounded-xl sm:rounded-2xl shadow-xl flex items-center gap-3 sm:gap-4 z-30"
               >
-                <div className="bg-emerald-100 p-3 rounded-full">
-                  <BarChart3 className="text-emerald-600" size={24} />
+                <div className="bg-emerald-100 p-2 sm:p-3 rounded-full">
+                  <BarChart3 className="text-emerald-600 w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
                 <div>
-                  <p className="text-xs text-slate-500 font-bold uppercase tracking-wider">Efficiency</p>
-                  <p className="text-xl font-extrabold text-slate-900">+300%</p>
+                  <p className="text-[10px] sm:text-xs text-slate-500 font-bold uppercase tracking-wider">Efficiency</p>
+                  <p className="text-lg sm:text-xl font-extrabold text-slate-900">+300%</p>
                 </div>
               </motion.div>
 
               <motion.div 
                 animate={{ y: [0, -10, 0], rotate: [0, -5, 0] }}
                 transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: 0.5 }}
-                className="absolute -top-6 -right-6 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-4 z-30"
+                className="absolute -top-4 -right-2 sm:-top-6 sm:-right-6 bg-white p-3 sm:p-4 rounded-xl sm:rounded-2xl shadow-xl flex items-center gap-3 sm:gap-4 z-30"
               >
-                <div className="bg-blue-100 p-3 rounded-full">
-                  <Bell className="text-blue-600 fill-blue-600" size={24} />
+                <div className="bg-blue-100 p-2 sm:p-3 rounded-full">
+                  <Bell className="text-blue-600 fill-blue-600 w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
                 <div>
-                  <p className="text-xs text-slate-500 font-bold uppercase tracking-wider">Instant</p>
-                  <p className="text-lg font-bold text-slate-900">Alerts</p>
+                  <p className="text-[10px] sm:text-xs text-slate-500 font-bold uppercase tracking-wider">Instant</p>
+                  <p className="text-base sm:text-lg font-bold text-slate-900">Alerts</p>
                 </div>
               </motion.div>
 
