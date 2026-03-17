@@ -74,7 +74,7 @@ export default function Footer() {
             <span className="font-semibold ml-1 flex items-center bg-white px-2 py-0.5 rounded text-slate-800">
               <span className="bg-[#000080] text-white px-1 rounded-sm mr-px">A</span>
               <span className="text-[#000080]">pp</span>
-              <span className="text-green-600">Mee</span>
+              <span className="text-green-600">Me</span>
               <span className="ml-1">Pvt Ltd.</span>
             </span>
           </p>

@@ -47,7 +47,7 @@ export default function Contact() {
             <div className="relative z-10">
               <h2 className="text-3xl font-bold mb-6">Get in Touch</h2>
               <p className="text-blue-100 mb-10 max-w-sm leading-relaxed">
-                Our enthusiastic team from <span className="inline-flex items-center font-bold mx-1 bg-white px-2 py-0.5 rounded text-slate-800"><span className="bg-[#000080] text-white px-1 rounded-sm mr-px">A</span><span className="text-[#000080]">pp</span><span className="text-green-600">Mee</span> <span className="ml-1">Pvt Ltd</span></span> is ready to answer all your queries and get you started on your digital journey.
+                Our enthusiastic team from <span className="inline-flex items-center font-bold mx-1 bg-white px-2 py-0.5 rounded text-slate-800"><span className="bg-[#000080] text-white px-1 rounded-sm mr-px">A</span><span className="text-[#000080]">pp</span><span className="text-green-600">Me</span> <span className="ml-1">Pvt Ltd</span></span> is ready to answer all your queries and get you started on your digital journey.
               </p>
 
               <div className="space-y-6">

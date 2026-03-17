@@ -58,15 +58,16 @@ export default function Navbar() {
               <div className="flex items-center gap-1.5 mt-1">
                 <div className="w-8 h-0.5 rounded-full transition-colors bg-blue-600"></div>
                 <span className="text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase transition-colors text-slate-500">
-                  Empowering Education
+                  Digitizing Schools for the Future.
                 </span>
               </div>
             </Link>
           </div>
           
-          <div className="hidden md:flex gap-2 relative p-2 rounded-full transition-all duration-300 bg-slate-100 shadow-inner border border-slate-200">
-            <AnimatePresence>
-              {navLinks.map((link) => {
+          <div className="hidden md:flex items-center gap-6">
+            <div className="flex gap-2 relative p-2 rounded-full transition-all duration-300 bg-slate-100 shadow-inner border border-slate-200">
+              <AnimatePresence>
+                {navLinks.map((link) => {
                 const active = isLinkActive(link.href, link.isHome);
                 return (
                   <Link 
@@ -91,6 +92,16 @@ export default function Navbar() {
                 );
               })}
             </AnimatePresence>
+            </div>
+            
+            <a 
+              href="https://appme.in/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="px-6 py-2.5 bg-blue-600 text-white rounded-full text-sm font-bold shadow-sm hover:bg-blue-700 transition-colors"
+            >
+              Visit AppMe
+            </a>
           </div>
 
           <div className="flex md:hidden items-center">
@@ -133,6 +144,15 @@ export default function Navbar() {
                   </Link>
                 );
               })}
+              <a
+                href="https://appme.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMobileOpen(false)}
+                className="px-4 py-3 mt-2 rounded-xl text-sm font-bold transition-all bg-blue-50 text-blue-700 hover:bg-blue-100"
+              >
+                Visit AppMe
+              </a>
             </div>
           </motion.div>
         )}

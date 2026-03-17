@@ -105,7 +105,7 @@ export default function Home() {
               >
                 <Sparkles size={20} className="text-yellow-500" />
                 <span className="text-base sm:text-lg font-semibold tracking-wide text-slate-700">
-                  A Flagship Product of <span className="font-extrabold ml-1 inline-flex items-center"><span className="bg-[#000080] text-white px-1.5 rounded-sm mr-0.5">A</span><span className="text-[#000080]">pp</span><span className="text-green-600">Mee</span> <span className="text-slate-900 ml-1.5">Pvt Ltd</span></span>
+                  A Flagship Product of <span className="font-extrabold ml-1 inline-flex items-center"><span className="bg-[#000080] text-white px-1.5 rounded-sm mr-0.5">A</span><span className="text-[#000080]">pp</span><span className="text-green-600">Me</span> <span className="text-slate-900 ml-1.5">Pvt Ltd</span></span>
                 </span>
               </motion.div>
 
@@ -115,6 +115,12 @@ export default function Home() {
                   Revolution in Education.
                 </span>
               </h1>
+              
+              <div className="inline-block bg-white/10 backdrop-blur-md border border-white/20 px-5 py-3 rounded-xl shadow-lg mb-8 max-w-full">
+                <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-yellow-400 drop-shadow-md leading-snug">
+                  Colegios - The Smart Operating System for Modern Schools.
+                </h2>
+              </div>
               
               <p className="text-lg sm:text-xl text-blue-50 mb-10 leading-relaxed font-light drop-shadow">
                 Colegios is an all-in-one, feature-rich school management ecosystem. We are building a stronger, smarter future by bringing cutting-edge digital infrastructure straight to the roots of our education system.
