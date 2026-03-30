@@ -105,7 +105,7 @@ export default function Home() {
               >
                 <Sparkles size={20} className="text-yellow-500" />
                 <span className="text-base sm:text-lg font-semibold tracking-wide text-slate-700">
-                  A Flagship Product of <span className="font-extrabold ml-1 inline-flex items-center"><span className="bg-[#000080] text-white px-1.5 rounded-sm mr-0.5">A</span><span className="text-[#000080]">pp</span><span className="text-green-600">Me</span> <span className="text-slate-900 ml-1.5">Pvt Ltd</span></span>
+                  A Flagship Product of <span className="font-extrabold ml-1 inline-flex items-center"><span className="bg-[#000080] text-white px-1.5 rounded-sm mr-0.5">A</span><span className="text-[#000080]">pp</span><span className="text-green-600">Me</span> <span className="text-slate-900 ml-1.5">Soft Pvt Ltd</span></span>
                 </span>
               </motion.div>
 

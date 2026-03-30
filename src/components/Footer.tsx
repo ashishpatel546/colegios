@@ -75,7 +75,7 @@ export default function Footer() {
               <span className="bg-[#000080] text-white px-1 rounded-sm mr-px">A</span>
               <span className="text-[#000080]">pp</span>
               <span className="text-green-600">Me</span>
-              <span className="ml-1">Pvt Ltd.</span>
+              <span className="ml-1">Soft Pvt Ltd.</span>
             </span>
           </p>
           <p>&copy; {new Date().getFullYear()} Colegios. All rights reserved.</p>

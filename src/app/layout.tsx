@@ -25,8 +25,8 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_APP_URL || 
     (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000")
   ),
-  title: "Colegios - Complete School Management System by AppMe",
-  description: "A complete feature-rich application to digitalize your school. Manage fees, exams, attendance and much more seamlessly. Built by enthusiastic engineers from AppMe Pvt Ltd.",
+  title: "Colegios - Complete School Management System by AppMe Soft Pvt Ltd",
+  description: "A complete feature-rich application to digitalize your school. Manage fees, exams, attendance and much more seamlessly. Built by enthusiastic engineers from AppMe Soft Pvt Ltd.",
   keywords: [
     "School Management System", 
     "Education ERP", 
@@ -43,18 +43,20 @@ export const metadata: Metadata = {
     "Cloud-based School ERP", 
     "School Administration Software", 
     "AppMe", 
+    "AppMe Soft",
+    "AppMe Soft Pvt Ltd",
     "Colegios"
   ],
-  authors: [{ name: "AppMe Pvt Ltd" }],
-  creator: "AppMe Pvt Ltd",
-  publisher: "AppMe Pvt Ltd",
+  authors: [{ name: "AppMe Soft Pvt Ltd" }],
+  creator: "AppMe Soft Pvt Ltd",
+  publisher: "AppMe Soft Pvt Ltd",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "/",
     siteName: "Colegios",
-    title: "Colegios - Complete School Management System by AppMe",
-    description: "A complete feature-rich application to digitalize your school. Manage fees, exams, attendance and much more seamlessly. Built by enthusiastic engineers from AppMe Pvt Ltd.",
+    title: "Colegios - Complete School Management System by AppMe Soft Pvt Ltd",
+    description: "A complete feature-rich application to digitalize your school. Manage fees, exams, attendance and much more seamlessly. Built by enthusiastic engineers from AppMe Soft Pvt Ltd.",
     images: [
       {
         url: "/images/banner-bg.jpg",
@@ -66,8 +68,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Colegios - Complete School Management System by AppMe",
-    description: "A complete feature-rich application to digitalize your school. Manage fees, exams, attendance and much more seamlessly. Built by enthusiastic engineers from AppMe Pvt Ltd.",
+    title: "Colegios - Complete School Management System by AppMe Soft Pvt Ltd",
+    description: "A complete feature-rich application to digitalize your school. Manage fees, exams, attendance and much more seamlessly. Built by enthusiastic engineers from AppMe Soft Pvt Ltd.",
     images: ["/images/banner-bg.jpg"],
     creator: "@appme",
   },
@@ -103,7 +105,7 @@ export default function RootLayout({
     "description": "A complete feature-rich application to digitalize your school. Manage fees, exams, attendance and much more seamlessly.",
     "publisher": {
       "@type": "Organization",
-      "name": "AppMe Pvt Ltd",
+      "name": "AppMe Soft Pvt Ltd",
       "url": "https://colegios.appme.in"
     }
   };
