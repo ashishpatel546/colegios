@@ -27,13 +27,13 @@ export default function Footer() {
               We are on a mission to digitalize the nation, starting with the root of education. Let&apos;s build a brighter future for the next generation.
             </p>
             <div className="flex flex-col gap-2 text-sm">
-              <a href="tel:+918005004357" className="flex items-center gap-2 hover:text-white transition-colors">
+              <a href="tel:+917838160389" className="flex items-center gap-2 hover:text-white transition-colors">
                 <Phone size={16} className="text-blue-400" />
-                8005004357
+                +91-7838160389
               </a>
-              <a href="tel:+919716160389" className="flex items-center gap-2 hover:text-white transition-colors">
+              <a href="tel:+919654047009" className="flex items-center gap-2 hover:text-white transition-colors">
                 <Phone size={16} className="text-blue-400" />
-                9716160389
+                +91-9654047009
               </a>
               <a href="mailto:info@colegios.in" className="flex items-center gap-2 hover:text-white transition-colors">
                 <Mail size={16} className="text-blue-400" />

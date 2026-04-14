@@ -11,7 +11,7 @@ export default function Contact() {
     message: "",
   });
 
-  const whatsappNumber = "918005004357";
+  const whatsappNumber = "917838160389";
   const whatsappUrl = `https://wa.me/${whatsappNumber}`;
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -57,9 +57,9 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-sm text-blue-200">Phone</p>
-                    <a href="tel:+918005004357" className="font-semibold hover:text-blue-200 transition-colors">8005004357</a>
+                    <a href="tel:+917838160389" className="font-semibold hover:text-blue-200 transition-colors">+91-7838160389</a>
                     <span className="mx-2 text-blue-400">|</span>
-                    <a href="tel:+919716160389" className="font-semibold hover:text-blue-200 transition-colors">9716160389</a>
+                    <a href="tel:+919654047009" className="font-semibold hover:text-blue-200 transition-colors">+91-9654047009</a>
                   </div>
                 </div>
 
