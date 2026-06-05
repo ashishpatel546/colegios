@@ -9,7 +9,10 @@ const features = [
   "Fully Customize & Scalable",
   "Android and IOS apps",
   "100% Cloud-Based Platform",
-  "Report Dashboards"
+  "Report Dashboards",
+  "Advanced Library Management",
+  "QR-based Security Access",
+  "Staff HR & Biometric Portal"
 ];
 
 export default function TypewriterEffect() {

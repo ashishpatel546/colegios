@@ -6,7 +6,8 @@ import { motion } from "framer-motion";
 import TypewriterEffect from "@/components/TypewriterEffect";
 import { 
   Building2, Wallet, Layers, Smartphone, Bell, 
-  BarChart3, LayoutDashboard, Zap, GraduationCap, Users, BookOpen, Sparkles, ChevronRight, ShieldCheck, LineChart, Leaf, Clock
+  BarChart3, LayoutDashboard, Zap, GraduationCap, Users, BookOpen, Sparkles, ChevronRight, ShieldCheck, LineChart, Leaf, Clock,
+  Library, QrCode, Fingerprint
 } from "lucide-react";
 
 const features = [
@@ -69,6 +70,21 @@ const features = [
     title: "One-Click Management",
     description: "Track everything effortlessly. Class management, student profiles, and staff coordination at your fingertips.",
     icon: <BarChart3 className="w-8 h-8 text-cyan-600" />
+  },
+  {
+    title: "Library Management",
+    description: "Advanced library software. Maintain book inventory, track issues/returns, and automate late fee provisions.",
+    icon: <Library className="w-8 h-8 text-amber-600" />
+  },
+  {
+    title: "Security QR Access",
+    description: "Dual-authentication timebound QR & PIN for visitors. Parents receive live updates to ensure premise security.",
+    icon: <QrCode className="w-8 h-8 text-rose-600" />
+  },
+  {
+    title: "Staff HR Portal",
+    description: "Geo-fenced biometric attendance, automated salary calculations, leave management, and instant slip downloads.",
+    icon: <Fingerprint className="w-8 h-8 text-teal-700" />
   }
 ];
 
