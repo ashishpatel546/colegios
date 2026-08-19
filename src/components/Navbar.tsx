@@ -2,161 +2,199 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useReducedMotionSafe } from "@/lib/useReducedMotionSafe";
+import { ArrowUpRight, Menu, X } from "lucide-react";
+import { navLinks, site } from "@/lib/site";
+import { Wordmark } from "./Brand";
 
 export default function Navbar() {
   const pathname = usePathname();
-  const [activeHash, setActiveHash] = useState("");
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+  const reduced = useReducedMotionSafe();
+  const panelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (pathname === "/") {
-        const sections = document.querySelectorAll("section[id]");
-        let current = "";
-        sections.forEach((section) => {
-          const sectionTop = (section as HTMLElement).offsetTop;
-          if (window.scrollY >= sectionTop - 250) {
-            current = "#" + section.getAttribute("id");
-          }
-        });
-        setActiveHash(current);
-      } else {
-        setActiveHash("");
-      }
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Close the sheet on navigation. Adjusting state during render is the
+  // documented way to reset on a changed input, and avoids an extra paint of
+  // the open sheet on the new page.
+  const [lastPath, setLastPath] = useState(pathname);
+  if (lastPath !== pathname) {
+    setLastPath(pathname);
+    if (open) setOpen(false);
+  }
+
+  // Escape closes the sheet, and the page underneath stops scrolling while it is open.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
     };
-    
-    window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Check on mount
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [pathname]);
+    document.addEventListener("keydown", onKey);
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = previous;
+    };
+  }, [open]);
 
-  const navLinks = [
-    { name: "Home", href: "/", isHome: true },
-    { name: "Features", href: "/#features", isHome: false },
-    { name: "Contact Us", href: "/contact", isHome: false },
-  ];
-
-  const isLinkActive = (href: string, isHome: boolean) => {
-    if (pathname !== "/") return pathname === href;
-    if (isHome) return activeHash === "";
-    return activeHash === href.substring(1);
-  };
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
-    <nav className="fixed top-0 w-full z-50 transition-all duration-300 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm py-5">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center">
-          
-          <div className="shrink-0 flex items-center">
-            <Link href="/" className="flex flex-col group py-2">
-              <span className="text-3xl sm:text-4xl font-extrabold tracking-tight transition-colors leading-none text-blue-900">
-                Colegios
-              </span>
-              <div className="flex items-center gap-1.5 mt-1">
-                <div className="w-8 h-0.5 rounded-full transition-colors bg-blue-600"></div>
-                <span className="text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase transition-colors text-slate-500">
-                  Digitizing Schools for the Future.
-                </span>
-              </div>
-            </Link>
-          </div>
-          
-          <div className="hidden md:flex items-center gap-6">
-            <div className="flex gap-2 relative p-2 rounded-full transition-all duration-300 bg-slate-100 shadow-inner border border-slate-200">
-              <AnimatePresence>
-                {navLinks.map((link) => {
-                const active = isLinkActive(link.href, link.isHome);
-                return (
-                  <Link 
-                    key={link.name}
-                    href={link.href} 
-                    className={`relative isolate px-6 py-2 rounded-full text-sm font-bold transition-all ${
-                      active 
-                        ? "text-white"
-                        : "text-slate-600 hover:text-blue-900"
-                    }`}
-                  >
-                    {active && (
-                      <motion.div
-                        layoutId="active-nav"
-                        className="absolute inset-0 rounded-full shadow-sm z-0 bg-blue-600"
-                        initial={false}
-                        transition={{ type: "spring", stiffness: 350, damping: 30 }}
-                      />
-                    )}
-                    <span className="relative z-10">{link.name}</span>
-                  </Link>
-                );
-              })}
-            </AnimatePresence>
-            </div>
-            
-            <a 
-              href="https://appme.in/" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="px-6 py-2.5 bg-blue-600 text-white rounded-full text-sm font-bold shadow-sm hover:bg-blue-700 transition-colors"
-            >
-              Visit AppMe
-            </a>
-          </div>
+    <>
+      <a
+        href="#main"
+        className="btn btn-ink sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:top-4 focus-visible:left-4 focus-visible:z-[100]"
+      >
+        Skip to content
+      </a>
 
-          <div className="flex md:hidden items-center">
-            <button
-              onClick={() => setMobileOpen((prev) => !prev)}
-              aria-label="Toggle menu"
-              className="p-2 rounded-full transition-all text-blue-900 hover:bg-slate-100"
-            >
-              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-        </div>
-      </div>
+      {/* The header always carries its own light surface. The page behind it is
+          a blue photograph at the top and white further down, so a transparent
+          bar would lose its contrast on one of them. */}
+      <header
+        className={`fixed inset-x-0 top-0 z-50 border-b transition-[background-color,box-shadow,padding,border-color] duration-300 ${
+          scrolled
+            ? "border-line bg-white py-2.5 shadow-[0_1px_0_rgba(11,27,51,0.05),0_12px_32px_-24px_rgba(11,27,51,0.55)]"
+            : "glass border-white/50 py-3.5 shadow-[0_1px_0_rgba(11,27,51,0.03)]"
+        }`}
+      >
+        <div className="shell flex items-center justify-between gap-4">
+          <Wordmark size={scrolled ? 42 : 46} />
 
-      {/* Mobile dropdown */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-lg"
-          >
-            <div className="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-1">
+          <nav aria-label="Primary" className="hidden items-center gap-1 lg:flex">
+            <div className="flex items-center rounded-full border border-line bg-white/70 p-1.5 shadow-[inset_0_1px_2px_rgba(11,27,51,0.04)]">
               {navLinks.map((link) => {
-                const active = isLinkActive(link.href, link.isHome);
+                const active = isActive(link.href);
                 return (
                   <Link
-                    key={link.name}
+                    key={link.href}
                     href={link.href}
-                    onClick={() => setMobileOpen(false)}
-                    className={`px-4 py-3 rounded-xl text-sm font-bold transition-all ${
-                      active
-                        ? "bg-blue-600 text-white"
-                        : "text-slate-700 hover:bg-slate-100 hover:text-blue-900"
+                    aria-current={active ? "page" : undefined}
+                    className={`relative isolate rounded-full px-4 py-2 text-sm font-semibold transition-colors duration-200 ${
+                      active ? "text-white" : "text-ink-600 hover:text-brand-700"
                     }`}
                   >
+                    {active ? (
+                      <motion.span
+                        layoutId="nav-pill"
+                        className="absolute inset-0 -z-10 rounded-full bg-gradient-to-b from-brand-600 to-brand-700 shadow-[0_6px_16px_-8px_rgba(15,59,168,0.9)]"
+                        initial={false}
+                        transition={
+                          reduced
+                            ? { duration: 0 }
+                            : { type: "spring", stiffness: 380, damping: 32 }
+                        }
+                      />
+                    ) : null}
                     {link.name}
                   </Link>
                 );
               })}
-              <a
-                href="https://appme.in/"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setMobileOpen(false)}
-                className="px-4 py-3 mt-2 rounded-xl text-sm font-bold transition-all bg-blue-50 text-blue-700 hover:bg-blue-100"
-              >
-                Visit AppMe
-              </a>
             </div>
-          </motion.div>
-        )}
+
+            <a
+              href={site.parentSite}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-2 inline-flex items-center gap-1 rounded-full px-3 py-2 text-sm font-semibold text-ink-500 transition-colors hover:text-brand-700"
+            >
+              AppMeSoft
+              <ArrowUpRight size={14} strokeWidth={2.25} />
+            </a>
+
+            <Link href="/contact" className="btn btn-primary ml-1 min-h-11 px-5 text-sm">
+              Book a demo
+            </Link>
+          </nav>
+
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            aria-label={open ? "Close menu" : "Open menu"}
+            className="grid h-12 w-12 place-items-center rounded-full border border-line bg-white text-ink-800 shadow-soft transition-colors hover:border-brand-300 hover:text-brand-700 lg:hidden"
+          >
+            {open ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
+      </header>
+
+      <AnimatePresence>
+        {open ? (
+          <motion.div
+            key="scrim"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-40 bg-ink-900/45 backdrop-blur-[2px] lg:hidden"
+            onClick={() => setOpen(false)}
+          />
+        ) : null}
       </AnimatePresence>
-    </nav>
+
+      <AnimatePresence>
+        {open ? (
+          <motion.div
+            key="sheet"
+            id="mobile-nav"
+            ref={panelRef}
+            initial={{ opacity: 0, y: reduced ? 0 : -16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: reduced ? 0 : -12 }}
+            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed inset-x-3 top-[4.75rem] z-50 overflow-hidden rounded-3xl border border-line bg-white shadow-float lg:hidden"
+          >
+            <nav aria-label="Primary mobile" className="flex flex-col p-3">
+              {navLinks.map((link) => {
+                const active = isActive(link.href);
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    aria-current={active ? "page" : undefined}
+                    className={`flex min-h-[3.25rem] items-center justify-between rounded-2xl px-4 text-base font-semibold transition-colors ${
+                      active
+                        ? "bg-brand-50 text-brand-700"
+                        : "text-ink-700 hover:bg-ground active:bg-ground-deep"
+                    }`}
+                  >
+                    {link.name}
+                    {active ? <span className="rail w-6" /> : null}
+                  </Link>
+                );
+              })}
+
+              <div className="mt-2 border-t border-line-soft pt-3">
+                <Link href="/contact" className="btn btn-primary w-full">
+                  Book a demo
+                </Link>
+                <a
+                  href={site.parentSite}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 flex min-h-12 items-center justify-center gap-1.5 text-sm font-semibold text-ink-500"
+                >
+                  Visit AppMeSoft
+                  <ArrowUpRight size={14} strokeWidth={2.25} />
+                </a>
+              </div>
+            </nav>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+    </>
   );
 }

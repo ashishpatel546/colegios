@@ -1,72 +1,404 @@
 @import 'tailwindcss';
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ============================================================
+   Colegios design tokens
+   Palette derives from the AppMeSoft wordmark: App (blue),
+   Me (green), Soft (saffron) — desaturated one notch so long
+   reading sessions stay easy on the eyes.
+   ============================================================ */
 
-  --animate-gradient: gradientMove 15s ease infinite;
+@theme {
+  /* Ink */
+  --color-ink-900: #0b1b33;
+  --color-ink-800: #16253f;
+  --color-ink-700: #233350;
+  --color-ink-600: #3c4b67;
+  --color-ink-500: #55647e;
+  --color-ink-400: #626f88;
+  /* ink-300 is a non-text token: dividers, inactive dots, decorative
+     icons. Anything carrying words uses ink-400 or darker. */
+  --color-ink-300: #8b99b1;
+  --color-ink-200: #b6c0d1;
 
-  @keyframes gradientMove {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
+  /* Ground + surfaces */
+  --color-ground: #f5f8fd;
+  --color-ground-deep: #eaf0fa;
+  --color-surface: #ffffff;
+  --color-line: #e3e9f4;
+  --color-line-soft: #eef2f9;
+
+  /* Brand blue — the structure */
+  --color-brand-50: #eef4ff;
+  --color-brand-100: #dee9ff;
+  --color-brand-200: #c2d5ff;
+  --color-brand-300: #93b4ff;
+  --color-brand-400: #5d8bfb;
+  --color-brand-500: #3670ef;
+  --color-brand-600: #1a54d6;
+  --color-brand-700: #0f3ba8;
+  --color-brand-800: #0d2f80;
+  --color-brand-900: #0b2560;
+  --color-brand-950: #061634;
+
+  /* Brand green — the proof */
+  --color-leaf-50: #e9f8f0;
+  --color-leaf-100: #d3f1e1;
+  --color-leaf-300: #74d6a4;
+  --color-leaf-500: #1cb96b;
+  --color-leaf-600: #12a05b;
+  --color-leaf-700: #0c7a45;
+  --color-leaf-800: #0a5f36;
+
+  /* Brand saffron — the action */
+  --color-saffron-50: #fff6ea;
+  --color-saffron-100: #ffecd4;
+  --color-saffron-200: #ffd8a8;
+  --color-saffron-400: #ffab54;
+  --color-saffron-500: #ff9933;
+  --color-saffron-600: #ef8412;
+  --color-saffron-700: #a85a08;
+  --color-saffron-800: #8a4a08;
+
+  --color-danger-600: #d6453b;
+
+  /* Type */
+  --font-display: var(--font-bricolage), 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-jakarta), 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-jetbrains), 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+
+  /* Motion */
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Elevation — soft, wide, low opacity. Never a hard drop shadow. */
+  --shadow-soft: 0 1px 2px rgba(11, 27, 51, 0.04), 0 8px 24px -12px rgba(11, 27, 51, 0.14);
+  --shadow-lift: 0 2px 4px rgba(11, 27, 51, 0.05), 0 18px 44px -20px rgba(11, 27, 51, 0.24);
+  --shadow-float: 0 4px 8px rgba(11, 27, 51, 0.06), 0 32px 72px -28px rgba(11, 27, 51, 0.3);
+
+  --animate-marquee: marquee 42s linear infinite;
+  --animate-pulse-ring: pulse-ring 2.4s var(--ease-in-out-soft) infinite;
+  --animate-drift: drift 18s var(--ease-in-out-soft) infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes pulse-ring {
+    0%   { transform: scale(1);   opacity: 0.55; }
+    70%  { transform: scale(2.1); opacity: 0; }
+    100% { transform: scale(2.1); opacity: 0; }
+  }
+  @keyframes drift {
+    0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+    50%      { transform: translate3d(0, -22px, 0) scale(1.04); }
   }
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+  --container: 76rem;
+  --gutter: 1.25rem;
+  --section-y: clamp(4.5rem, 8vw, 8rem);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #f8fafc;
-    --foreground: #0f172a;
+@media (min-width: 768px)  { :root { --gutter: 2rem; } }
+@media (min-width: 1280px) { :root { --gutter: 3rem; } }
+
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* clears the fixed header when jumping to an anchor */
+    scroll-padding-top: 6.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-ground);
+    color: var(--color-ink-700);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Headings sit in deep brand navy, never black — the wordmark colour carried
+     through the page. Wrapped in :where() so the rule carries zero specificity
+     and a utility class (text-white on a navy panel, say) always wins. */
+  :where(h1, h2, h3, h4) {
+    font-family: var(--font-display);
+    color: var(--color-brand-900);
+    letter-spacing: -0.028em;
+    text-wrap: balance;
+  }
+
+  :where(p) { text-wrap: pretty; }
+
+
+  ::selection {
+    background: var(--color-saffron-200);
+    color: var(--color-ink-900);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-600);
+    outline-offset: 3px;
+    border-radius: 4px;
   }
 }
 
-html {
-  scroll-behavior: smooth;
+/* Component classes live in Tailwind's components layer so utilities
+   (border-leaf-100, bg-white, rounded-full …) can still override them. */
+@layer components {
+  /* ---------- Layout primitives ---------- */
+
+  .shell {
+    width: 100%;
+    max-width: var(--container);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  .section {
+    padding-block: var(--section-y);
+  }
+
+  /* ---------- Type primitives ---------- */
+
+  .display {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(2.5rem, 1.35rem + 4.6vw, 4.4rem);
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+  }
+
+  .headline {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.9rem, 1.15rem + 2.9vw, 3rem);
+    line-height: 1.05;
+    letter-spacing: -0.032em;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-ink-400);
+  }
+
+  .lede {
+    font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+    line-height: 1.7;
+    color: var(--color-ink-500);
+  }
+
+  .tnum { font-variant-numeric: tabular-nums; }
+
+  /* ---------- The tricolour rail ----------
+     The one bold structural device: saffron / white / green over
+     navy, echoing the AppMeSoft wordmark. Used on section heads,
+     card edges and the footer — nowhere else. */
+
+  .rail {
+    display: block;
+    height: 3px;
+    width: 3.5rem;
+    border-radius: 999px;
+    background: linear-gradient(
+      to right,
+      var(--color-saffron-500) 0 34%,
+      var(--color-ink-200) 34% 40%,
+      var(--color-leaf-500) 40% 74%,
+      var(--color-brand-600) 74% 100%
+    );
+  }
+
+  .rail-edge {
+    position: absolute;
+    inset-inline: 1.75rem;
+    top: 0;
+    height: 3px;
+    border-radius: 0 0 999px 999px;
+    background: linear-gradient(
+      to right,
+      var(--color-saffron-500),
+      var(--color-leaf-500) 55%,
+      var(--color-brand-600)
+    );
+    opacity: 0;
+    transition: opacity 240ms var(--ease-out-soft);
+  }
+
+  .group:hover .rail-edge,
+  .group:focus-within .rail-edge { opacity: 1; }
+
+  /* ---------- Surfaces ---------- */
+
+  .card {
+    position: relative;
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: 1.25rem;
+    box-shadow: var(--shadow-soft);
+    transition: transform 320ms var(--ease-out-soft), box-shadow 320ms var(--ease-out-soft),
+      border-color 320ms var(--ease-out-soft);
+  }
+
+  .card-hover:hover,
+  .card-hover:focus-within {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lift);
+    border-color: var(--color-brand-200);
+  }
+
+  /* Opaque enough that nothing ghosts through a fixed bar — headings scrolling
+     underneath must not be legible through it — while still picking up a little
+     of the colour behind. */
+  .glass {
+    background: color-mix(in srgb, #ffffff 94%, transparent);
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+  }
+
+  /* Fully opaque: a sticky index must never let the heading scrolling
+     underneath it show through. */
+  .glass-solid {
+    background: #ffffff;
+  }
+
+  @supports not (backdrop-filter: blur(1px)) {
+    .glass, .glass-solid { background: #ffffff; }
+  }
+
+  .glass-dark {
+    background: color-mix(in srgb, #0b2560 42%, transparent);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+  }
+
+  /* Fine grid paper — a school register, not a tech mesh */
+  .grid-paper {
+    background-image:
+      linear-gradient(to right, color-mix(in srgb, var(--color-brand-600) 7%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in srgb, var(--color-brand-600) 7%, transparent) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  /* ---------- Controls ---------- */
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 3rem;
+    padding: 0.75rem 1.6rem;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: transform 180ms var(--ease-out-soft), box-shadow 240ms var(--ease-out-soft),
+      background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+  }
+
+  .btn:active { transform: scale(0.975); }
+
+  /* Saffron carries ink text, never white — 9:1 instead of 2.4:1 */
+  .btn-primary {
+    background: linear-gradient(135deg, var(--color-saffron-400), var(--color-saffron-500) 55%, var(--color-saffron-600));
+    color: var(--color-ink-900);
+    box-shadow: 0 1px 2px rgba(138, 74, 8, 0.2), 0 12px 28px -12px rgba(239, 132, 18, 0.75);
+  }
+  .btn-primary:hover {
+    box-shadow: 0 2px 4px rgba(138, 74, 8, 0.22), 0 18px 38px -14px rgba(239, 132, 18, 0.85);
+    transform: translateY(-2px);
+  }
+  .btn-primary:active { transform: translateY(0) scale(0.975); }
+
+  .btn-ink {
+    background: var(--color-ink-900);
+    color: #fff;
+    box-shadow: var(--shadow-soft);
+  }
+  .btn-ink:hover { background: var(--color-brand-800); transform: translateY(-2px); }
+
+  .btn-quiet {
+    background: var(--color-surface);
+    color: var(--color-ink-800);
+    border: 1px solid var(--color-line);
+    box-shadow: var(--shadow-soft);
+  }
+  .btn-quiet:hover { border-color: var(--color-brand-300); color: var(--color-brand-700); transform: translateY(-2px); }
+
+  .btn-on-dark {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    backdrop-filter: blur(10px);
+  }
+  .btn-on-dark:hover { background: rgba(255, 255, 255, 0.18); transform: translateY(-2px); }
+
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1.5px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 260ms var(--ease-out-soft);
+  }
+  .link-underline:hover { background-size: 100% 1.5px; }
+
+  /* ---------- Chips ---------- */
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    border: 1px solid transparent;
+  }
+  .chip-new    { background: var(--color-saffron-50); color: var(--color-saffron-700); border-color: var(--color-saffron-200); }
+  .chip-live   { background: var(--color-leaf-50);   color: var(--color-leaf-700);   border-color: var(--color-leaf-100); }
+  .chip-brand  { background: var(--color-brand-50);  color: var(--color-brand-700);  border-color: var(--color-brand-100); }
+
+  /* ---------- Scrollbar ---------- */
+
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: var(--color-ground-deep); }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-ink-200);
+    border-radius: 999px;
+    border: 2px solid var(--color-ground-deep);
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-ink-300); }
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { scrollbar-width: none; }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-  overflow-x: hidden;
-}
+/* ---------- Reduced motion ---------- */
 
-.bg-live-gradient {
-  background: linear-gradient(
-    -45deg,
-    #0ea5e9,
-    #3b82f6,
-    #4f46e5,
-    #0f172a,
-    #1e1b4b
-  );
-  background-size: 400% 400%;
-}
-
-/* Base custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #f1f5f9;
-}
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
