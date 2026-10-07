@@ -41,7 +41,7 @@ export const site = {
   whatsapp: "917838160389",
   email: "info@colegios.in",
   parentSite: "https://appme.in/",
-  url: "https://colegios.appme.in",
+  url: "https://www.colegios.in",
 } as const;
 
 export const navLinks = [

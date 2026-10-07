@@ -37,10 +37,10 @@ const description =
   "One system for admissions, fees, academics, inventory, visitors and campus safety. HMAC-secured QR ID cards, secure student pickup and a parent app that stays in step. Built for Indian schools by AppMeSoft Private Limited.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_APP_URL ||
-      (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000"),
-  ),
+  // Canonical and Open Graph URLs resolve against this, so it must be the public domain.
+  // Never VERCEL_URL: that is the per-deployment *.vercel.app host, which sits behind
+  // Vercel SSO, and Google then treats every colegios.in page as a duplicate of it.
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || site.url),
   title: {
     default: title,
     template: "%s · Colegios",
