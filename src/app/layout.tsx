@@ -76,20 +76,13 @@ export const metadata: Metadata = {
     siteName: "Colegios",
     title,
     description,
-    images: [
-      {
-        url: "/images/banner-bg.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Colegios — the school operating system",
-      },
-    ],
+    // Image comes from src/app/opengraph-image.tsx
   },
   twitter: {
     card: "summary_large_image",
     title,
     description,
-    images: ["/images/banner-bg.jpg"],
+    // Image comes from src/app/twitter-image.tsx
     creator: "@appme",
   },
   robots: {
