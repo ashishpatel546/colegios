@@ -48,6 +48,7 @@ export const navLinks = [
   { name: "Home", href: "/" },
   { name: "Modules", href: "/features" },
   { name: "Campus Safety", href: "/security" },
+  { name: "Product Guide", href: "/product-guide" },
   { name: "Contact", href: "/contact" },
 ] as const;
 

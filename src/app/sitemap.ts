@@ -6,6 +6,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "", priority: 1 },
     { path: "/features", priority: 0.9 },
     { path: "/security", priority: 0.8 },
+    { path: "/product-guide", priority: 0.8 },
     { path: "/contact", priority: 0.7 },
   ];
 
