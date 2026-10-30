@@ -156,24 +156,29 @@ export default function ContactPanels() {
                       </a>
                     </li>
                   ))}
-                  <li>
-                    <a
-                      href={`mailto:${site.email}`}
-                      className="group flex items-center gap-4 rounded-2xl border border-white/12 bg-white/6 px-4 py-3.5 transition-colors hover:bg-white/12"
-                    >
-                      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-white/10 ring-1 ring-white/15">
-                        <Mail size={17} className="text-brand-200" />
-                      </span>
-                      <span className="min-w-0">
-                        <span className="block font-mono text-[0.5625rem] tracking-[0.2em] text-white/45 uppercase">
-                          Email
+                  {[
+                    { label: "Email", email: site.email },
+                    { label: "Support", email: site.supportEmail },
+                  ].map(({ label, email }) => (
+                    <li key={email}>
+                      <a
+                        href={`mailto:${email}`}
+                        className="group flex items-center gap-4 rounded-2xl border border-white/12 bg-white/6 px-4 py-3.5 transition-colors hover:bg-white/12"
+                      >
+                        <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-white/10 ring-1 ring-white/15">
+                          <Mail size={17} className="text-brand-200" />
                         </span>
-                        <span className="block truncate font-semibold text-white">
-                          {site.email}
+                        <span className="min-w-0">
+                          <span className="block font-mono text-[0.5625rem] tracking-[0.2em] text-white/45 uppercase">
+                            {label}
+                          </span>
+                          <span className="block truncate font-semibold text-white">
+                            {email}
+                          </span>
                         </span>
-                      </span>
-                    </a>
-                  </li>
+                      </a>
+                    </li>
+                  ))}
                 </ul>
 
                 <div className="mt-8 rounded-2xl border border-white/12 bg-white/6 p-5">

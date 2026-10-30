@@ -49,15 +49,18 @@ export default function Footer() {
                   <span className="tnum">{phone}</span>
                 </a>
               ))}
-              <a
-                href={`mailto:${site.email}`}
-                className="group inline-flex w-fit items-center gap-3 text-brand-100/80 transition-colors hover:text-white"
-              >
-                <span className="grid h-9 w-9 place-items-center rounded-full bg-white/8 ring-1 ring-white/12 transition-colors group-hover:bg-white/14">
-                  <Mail size={15} className="text-brand-200" />
-                </span>
-                {site.email}
-              </a>
+              {[site.email, site.supportEmail].map((email) => (
+                <a
+                  key={email}
+                  href={`mailto:${email}`}
+                  className="group inline-flex w-fit items-center gap-3 text-brand-100/80 transition-colors hover:text-white"
+                >
+                  <span className="grid h-9 w-9 place-items-center rounded-full bg-white/8 ring-1 ring-white/12 transition-colors group-hover:bg-white/14">
+                    <Mail size={15} className="text-brand-200" />
+                  </span>
+                  {email}
+                </a>
+              ))}
             </div>
           </div>
 

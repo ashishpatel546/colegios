@@ -458,8 +458,9 @@ Colegios isn't a one-product startup. It's built by **AppMe Soft Private Limited
 
 | | |
 |---|---|
-| 📞 **Call / WhatsApp** | +91-7838160389 · +91-9716160389 · +91-8005004357 |
+| 📞 **Call / WhatsApp** | +91-7838160389 · +91-8005004357 |
 | 📧 **Email** | info@colegios.in |
+| 🛟 **Support** | support@appme.in |
 | 🌐 **Website** | [colegios.in](https://colegios.in) |
 | 🏢 **Company** | [appme.in](https://appme.in) |
 

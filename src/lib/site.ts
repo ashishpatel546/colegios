@@ -37,9 +37,10 @@ export const site = {
   name: "Colegios",
   tagline: "The operating system for modern schools",
   company: "AppMeSoft Private Limited",
-  phones: ["+91-7838160389", "+91-9654047009"],
+  phones: ["+91-7838160389"],
   whatsapp: "917838160389",
   email: "info@colegios.in",
+  supportEmail: "support@appme.in",
   parentSite: "https://appme.in/",
   url: "https://www.colegios.in",
 } as const;

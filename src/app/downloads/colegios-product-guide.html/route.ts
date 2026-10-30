@@ -121,7 +121,7 @@ export function GET() {
   </main>
 </div>
 <footer class="foot"><div>
-  <span>${escape(site.company)} · <a href="tel:${phone.replace(/[^+\d]/g, "")}">${escape(phone)}</a> · <a href="mailto:${site.email}">${site.email}</a></span>
+  <span>${escape(site.company)} · <a href="tel:${phone.replace(/[^+\d]/g, "")}">${escape(phone)}</a> · <a href="mailto:${site.email}">${site.email}</a> · <a href="mailto:${site.supportEmail}">${site.supportEmail}</a></span>
   <span>Latest version: <a href="${online}">${online.replace(/^https?:\/\//, "")}</a></span>
 </div></footer>
 <script>(${enhanceGuide.toString()})(document.getElementById("guide"), document.getElementById("guide-toc"));</script>
