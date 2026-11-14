@@ -17,11 +17,25 @@ npm run lint
 
 | Route | What it does |
 |---|---|
-| `/` | The pitch: hero, the four new capabilities, the school-day signature, module overview, audiences, FAQ |
+| `/` | The pitch: hero, the current offer (`/#offers`), transport and event management, the security capabilities, the school-day signature, module overview, audiences, FAQ |
 | `/features` | The full module catalogue, grouped and indexed with a sticky section nav |
+| `/product-guide` | **Private, for the marketing team.** The product guide with PDF, HTML and Markdown downloads, behind a login (see below) |
 | `/security` | Campus safety in depth — QR ID cards, secure pickup, visitors, inventory |
 | `/contact` | Contact channels and a demo-request form that hands off to WhatsApp |
 | `not-found` | 404 |
+
+### The private product guide
+
+`src/proxy.ts` puts `/product-guide` and `/downloads/*` behind one shared login. Set
+`GUIDE_USER` and `GUIDE_PASSWORD` on the server (see `.env.example`); without them the guide
+stays locked. It is excluded from the sitemap and marked `noindex`.
+
+Marketing edits `COLEGIOS_PRODUCT_GUIDE.md` in their folder, then:
+
+```bash
+npm run sync:guide   # copy the Markdown (and PDF) into the site
+npm run pdf:guide    # rebuild the PDF from content/product-guide.md (needs Chrome)
+```
 
 ## Design system
 

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ChevronDown, FileDown, FileText, MonitorSmartphone } from "lucide-react";
+import { ChevronDown, FileDown, FileText, LockKeyhole, MonitorSmartphone } from "lucide-react";
 
 import CtaBand from "@/components/CtaBand";
 import GuideBody from "@/components/GuideBody";
@@ -9,9 +9,9 @@ import { getProductGuide, guideDownloads } from "@/lib/productGuide";
 
 export const metadata: Metadata = {
   title: "Product guide",
-  description:
-    "The complete Colegios product guide: current offers, signature features, pricing from ₹5.26 per student per month, plan comparison and how to get started. Read it online or download it as PDF or interactive HTML.",
-  alternates: { canonical: "/product-guide" },
+  description: "The Colegios product guide, for the marketing team.",
+  // Private: src/proxy.ts puts this page behind the marketing login.
+  robots: { index: false, follow: false },
 };
 
 const TOC_ID = "guide-toc";
@@ -70,7 +70,14 @@ export default function ProductGuidePage() {
         lede={guide.subtitle}
         aside={
           <div className="rounded-[1.5rem] border border-line bg-surface p-5 shadow-lift">
-            <p className="eyebrow">Download</p>
+            <p className="flex items-start gap-2 rounded-xl bg-saffron-50 px-3.5 py-3 text-sm leading-snug text-saffron-800">
+              <LockKeyhole size={16} className="mt-0.5 shrink-0" />
+              <span>
+                For the marketing team. Send schools the PDF or HTML file, not a link to this
+                page: it asks for the team login.
+              </span>
+            </p>
+            <p className="eyebrow mt-5">Download</p>
             <ul className="mt-4 space-y-2">
               {downloads.map(({ href, file, label, detail, icon: Icon }) => (
                 <li key={href}>

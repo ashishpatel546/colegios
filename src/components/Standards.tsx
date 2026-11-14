@@ -1,4 +1,4 @@
-import { Check } from "lucide-react";
+import { Check, Hammer, MapPin, ShieldCheck } from "lucide-react";
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
 import { standards, standardsChips } from "@/lib/site";
@@ -14,17 +14,56 @@ export default function Standards() {
     <section id="standards" className="section scroll-mt-28 border-y border-line bg-white/60">
       <div className="shell">
         <SectionHeading
-          eyebrow="Built to standard"
+          eyebrow="Made in India · International standards"
           title={
             <>
-              Held to the standard school software is held to{" "}
-              <span className="text-brand-600">anywhere in the world</span>.
+              Features that meet international standards,{" "}
+              <span className="text-brand-600">now built in India for Indian schools</span>.
             </>
           }
-          lede="An Indian school should not have to accept less than a school in Singapore or Stockholm. Colegios is engineered against the same specifications — in how it signs an identity, protects a record, handles a script it has never seen, and stays usable for everyone."
+          lede="An Indian school should not have to accept less than a school in Singapore or Stockholm. Colegios is engineered against the same specifications, in how it signs an identity, protects a record, handles a script it has never seen, and stays usable for everyone."
           align="center"
           className="mb-14"
         />
+
+        {/* Made in India, said once and plainly, with the tricolour that runs
+            through the rest of the site */}
+        <Reveal>
+          <div className="relative mb-10 overflow-hidden rounded-[1.5rem] border border-line bg-white shadow-soft">
+            <div className="h-[3px] w-full bg-gradient-to-r from-saffron-500 via-white to-leaf-500" />
+            <ul className="grid divide-y divide-line-soft sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+              {[
+                {
+                  icon: MapPin,
+                  title: "Made in India",
+                  line: "Designed, built and supported in India by AppMeSoft.",
+                },
+                {
+                  icon: Hammer,
+                  title: "Built from scratch",
+                  line: "Our own product, line by line. Not a reskinned import.",
+                },
+                {
+                  icon: ShieldCheck,
+                  title: "Our own safety design",
+                  line: "QR-verified pickup was conceived and built by our own team.",
+                },
+              ].map((item) => (
+                <li key={item.title} className="flex items-start gap-4 px-6 py-5">
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-saffron-200 bg-saffron-50 text-saffron-700">
+                    <item.icon size={19} strokeWidth={1.75} />
+                  </span>
+                  <span>
+                    <span className="font-display block text-base font-bold text-ink-900">
+                      {item.title}
+                    </span>
+                    <span className="mt-1 block text-sm leading-snug text-ink-500">{item.line}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {standards.map((standard, index) => (

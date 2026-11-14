@@ -1,18 +1,29 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Check, Sparkles } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check, Gift } from "lucide-react";
 
 import CtaBand from "@/components/CtaBand";
 import Faq from "@/components/Faq";
 import LiveNow from "@/components/LiveNow";
 import Marquee from "@/components/Marquee";
 import ModuleCard from "@/components/ModuleCard";
+import Maker from "@/components/Maker";
 import Reveal from "@/components/Reveal";
+import SafetyStory from "@/components/SafetyStory";
 import SchoolDay from "@/components/SchoolDay";
 import SectionHeading from "@/components/SectionHeading";
 import Standards from "@/components/Standards";
-import { AppMeSoft } from "@/components/Brand";
-import { audiences, moduleCount, moduleGroups, newCapabilities, outcomes } from "@/lib/site";
+import {
+  audiences,
+  moduleCount,
+  moduleGroups,
+  newCapabilities,
+  offer,
+  outcomes,
+  pricing,
+  site,
+  spotlights,
+} from "@/lib/site";
 
 const accentBadge = {
   brand: "bg-brand-50 text-brand-700 border-brand-100",
@@ -38,13 +49,22 @@ export default function Home() {
             {/* ---- Left: the thesis ---- */}
             <div>
               <Reveal>
-                <span className="inline-flex items-center gap-2 rounded-full border border-line bg-white/80 py-1.5 pr-4 pl-1.5 text-sm shadow-soft backdrop-blur">
+                <a
+                  href="#offers"
+                  className="group inline-flex items-center gap-2 rounded-full border border-saffron-200 bg-white/85 py-1.5 pr-4 pl-1.5 text-sm shadow-soft backdrop-blur transition-colors hover:border-saffron-300"
+                >
                   <span className="grid h-6 w-6 place-items-center rounded-full bg-saffron-100">
-                    <Sparkles size={13} className="text-saffron-700" />
+                    <Gift size={13} className="text-saffron-700" />
                   </span>
-                  <span className="text-ink-500">A product of</span>
-                  <AppMeSoft className="text-sm" suffix={null} />
-                </span>
+                  <span className="font-semibold text-ink-700">
+                    Offer running: four premium modules free
+                  </span>
+                  <ArrowRight
+                    size={14}
+                    strokeWidth={2.25}
+                    className="text-saffron-700 transition-transform group-hover:translate-x-0.5"
+                  />
+                </a>
               </Reveal>
 
               <Reveal index={1}>
@@ -67,8 +87,9 @@ export default function Home() {
 
               <Reveal index={2}>
                 <p className="lede mt-6 max-w-xl">
-                  Colegios runs admissions, fees, attendance, exams, stock and campus safety off a
-                  single record. Nothing is entered twice, and nobody is waiting on a file.
+                  Colegios runs admissions, fees, attendance, exams, transport, events and campus
+                  safety off a single record. Nothing is entered twice, and nobody is waiting on a
+                  file.
                 </p>
               </Reveal>
 
@@ -79,7 +100,7 @@ export default function Home() {
                     <ArrowRight size={17} strokeWidth={2.25} />
                   </Link>
                   <Link href="/features" className="btn btn-quiet w-full sm:w-auto">
-                    See every module
+                    See every feature
                   </Link>
                 </div>
               </Reveal>
@@ -87,9 +108,9 @@ export default function Home() {
               <Reveal index={4}>
                 <ul className="mt-9 flex flex-wrap gap-x-6 gap-y-3">
                   {[
-                    "Android, iOS and web",
+                    `Plans from ${pricing.from} per student a month`,
+                    "Live attendance updates for parents, at no extra cost",
                     "Live in two to four weeks",
-                    "Your data, exportable",
                   ].map((item) => (
                     <li key={item} className="flex items-center gap-2 text-sm text-ink-500">
                       <span className="grid h-5 w-5 place-items-center rounded-full bg-leaf-50">
@@ -155,15 +176,220 @@ export default function Home() {
 
       <Marquee />
 
+      <SafetyStory />
+
+      {/* ============================== Offers ============================== */}
+      {/* Linked from the main menu as /#offers. No end date on purpose: the
+          offer reads as running now, and the copy asks for action today. */}
+      <section id="offers" className="section scroll-mt-28">
+        <div className="shell">
+          <Reveal>
+            <div className="relative overflow-hidden rounded-[2rem] border border-saffron-200 bg-gradient-to-br from-saffron-50 via-white to-brand-50 p-6 shadow-lift sm:p-10 lg:p-12">
+              <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-saffron-500 via-leaf-500 to-brand-600" />
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -top-28 -right-24 h-80 w-80 rounded-full bg-saffron-200/50 blur-[100px]"
+              />
+
+              <div className="relative grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12">
+                <div>
+                  <span className="inline-flex items-center gap-2 rounded-full border border-saffron-300 bg-white px-3.5 py-1.5 text-xs font-bold tracking-wide text-saffron-800 uppercase">
+                    <span className="relative flex h-2 w-2">
+                      <span className="absolute inline-flex h-full w-full rounded-full bg-saffron-500 opacity-70 motion-safe:animate-ping" />
+                      <span className="relative inline-flex h-2 w-2 rounded-full bg-saffron-600" />
+                    </span>
+                    Offer running now · limited period
+                  </span>
+
+                  <h2 className="headline mt-6">
+                    Four premium modules,{" "}
+                    <span className="text-saffron-700">free until your first renewal.</span>
+                  </h2>
+                  <p className="lede mt-4 max-w-xl">
+                    {offer.terms} Enrol while the offer is open and your school runs the full
+                    campus suite from day one, at no extra cost.
+                  </p>
+
+                  <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+                    {offer.freeModules.map((module) => (
+                      <li
+                        key={module.name}
+                        className="flex items-start gap-3 rounded-2xl border border-line bg-white/90 p-4"
+                      >
+                        <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-leaf-100 bg-leaf-50 text-leaf-700">
+                          <module.icon size={19} strokeWidth={1.75} />
+                        </span>
+                        <span className="min-w-0">
+                          <span className="flex flex-wrap items-center gap-2">
+                            <span className="font-display text-base leading-tight font-bold text-ink-900">
+                              {module.name}
+                            </span>
+                            <span className="chip chip-live py-0.5">Free</span>
+                            {"tag" in module ? (
+                              <span className="chip chip-new py-0.5">{module.tag}</span>
+                            ) : null}
+                          </span>
+                          <span className="mt-1 block text-sm leading-snug text-ink-500">
+                            {module.line}
+                          </span>
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+                    <Link href="/contact" className="btn btn-primary w-full sm:w-auto">
+                      Claim the offer
+                      <ArrowRight size={17} strokeWidth={2.25} />
+                    </Link>
+                    <a
+                      href={`https://wa.me/${site.whatsapp}?text=${encodeURIComponent(
+                        "Hi, we would like to claim the Colegios offer for our school.",
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-quiet w-full sm:w-auto"
+                    >
+                      Ask on WhatsApp
+                    </a>
+                  </div>
+                  <p className="mt-4 text-sm font-semibold text-ink-600">
+                    Want to try it first? Our team will set up a trial around your school.
+                  </p>
+                </div>
+
+                <div className="flex flex-col gap-5">
+                  <div className="relative overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-brand-800 via-brand-900 to-ink-900 p-6 text-white sm:p-7">
+                    <p className="font-mono text-[0.6875rem] tracking-[0.2em] text-white/55 uppercase">
+                      Plans from
+                    </p>
+                    <p className="font-display tnum mt-2 text-[3.25rem] leading-none font-extrabold tracking-[-0.04em]">
+                      {pricing.from}
+                    </p>
+                    <p className="mt-2 text-[0.9375rem] font-semibold text-brand-100/85">
+                      {pricing.unit}
+                    </p>
+                    <p className="mt-4 inline-flex rounded-full bg-white/10 px-3 py-1.5 text-sm font-bold text-saffron-300 ring-1 ring-white/15">
+                      That is {pricing.perDay}
+                    </p>
+                  </div>
+
+                  <div className="rounded-[1.5rem] border border-line bg-white/90 p-5 sm:p-6">
+                    <p className="eyebrow">Also new, and yours to try</p>
+                    <ul className="mt-4 space-y-1">
+                      {offer.alsoNew.map((item) => (
+                        <li key={item.name}>
+                          <Link
+                            href={item.href}
+                            className="group -mx-2 flex items-center gap-3 rounded-xl px-2 py-2.5 transition-colors hover:bg-ground"
+                          >
+                            <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-brand-50 text-brand-700">
+                              <item.icon size={17} strokeWidth={1.75} />
+                            </span>
+                            <span className="min-w-0 flex-1">
+                              <span className="block text-[0.9375rem] leading-tight font-semibold text-ink-800 group-hover:text-brand-700">
+                                {item.name}
+                              </span>
+                              <span className="block text-[0.8125rem] text-ink-400">{item.line}</span>
+                            </span>
+                            <span
+                              className={`chip shrink-0 py-0.5 ${
+                                item.status === "Beta" ? "chip-brand" : "chip-live"
+                              }`}
+                            >
+                              {item.status}
+                            </span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <p className="relative mt-8 border-t border-saffron-200/70 pt-5 text-xs leading-relaxed text-ink-400">
+                {pricing.note} The free modules are billed from your first renewal. Beta features
+                are switched on by request. T&amp;C apply.
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ============================ Just launched ============================ */}
+      <section className="section border-y border-line bg-white/60">
+        <div className="shell">
+          <SectionHeading
+            eyebrow="Just launched"
+            title={
+              <>
+                Two new answers to the questions parents ask most:{" "}
+                <span className="text-brand-700">where is the bus, and who is at the gate</span>.
+              </>
+            }
+            lede="Transport is already the feature schools ask for first. Event management brings the same control to annual days, sports meets and PTMs, when the gate is busiest."
+          />
+
+          <div className="mt-14 grid gap-6 lg:grid-cols-2">
+            {spotlights.map((spotlight, index) => (
+              <Reveal key={spotlight.id} index={index}>
+                <article className="card flex h-full flex-col overflow-hidden p-7 sm:p-9">
+                  <span className="rail-edge" />
+                  <div className="flex items-start justify-between gap-4">
+                    <span
+                      className={`grid h-14 w-14 shrink-0 place-items-center rounded-2xl border ${accentBadge[spotlight.accent]}`}
+                    >
+                      <spotlight.icon size={25} strokeWidth={1.75} />
+                    </span>
+                    <span className="chip chip-new">{spotlight.eyebrow}</span>
+                  </div>
+
+                  <h3 className="font-display mt-6 text-2xl leading-tight font-bold sm:text-[1.65rem]">
+                    {spotlight.name}
+                  </h3>
+                  <p className="mt-2 text-[1.0625rem] leading-relaxed font-semibold text-ink-600">
+                    {spotlight.line}
+                  </p>
+
+                  <ul className="mt-6 space-y-3">
+                    {spotlight.points.map((point) => (
+                      <li key={point} className="flex items-start gap-3 text-[0.9375rem] leading-relaxed text-ink-600">
+                        <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-leaf-50">
+                          <Check size={12} strokeWidth={3} className="text-leaf-700" />
+                        </span>
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="mt-auto flex flex-wrap items-center gap-x-6 gap-y-3 pt-8">
+                    <Link href="/contact" className="btn btn-ink min-h-11 px-5 text-sm">
+                      See it in a demo
+                    </Link>
+                    <Link
+                      href={spotlight.href}
+                      className="link-underline inline-flex items-center gap-1 text-sm font-semibold text-brand-700"
+                    >
+                      In the catalogue
+                      <ArrowUpRight size={14} strokeWidth={2.25} />
+                    </Link>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ========================= New capabilities ========================= */}
       <section className="section">
         <div className="shell">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <SectionHeading
-              eyebrow="New in Colegios"
+              eyebrow="Also new in Colegios"
               title={
                 <>
-                  Four additions, all pointed at the same thing:{" "}
+                  Four more additions, all pointed at the same thing:{" "}
                   <span className="text-brand-700">who is on campus, and what is on it</span>.
                 </>
               }
@@ -180,32 +406,29 @@ export default function Home() {
             </Reveal>
           </div>
 
-          <div className="mt-14 grid gap-6 md:grid-cols-2">
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {newCapabilities.map((capability, index) => (
               <Reveal key={capability.slug} index={index}>
                 <Link
                   href={`/security#${capability.slug}`}
-                  className="card card-hover group flex h-full flex-col overflow-hidden p-7 sm:p-8"
+                  className="card card-hover group flex h-full flex-col overflow-hidden p-6"
                 >
                   <span className="rail-edge" />
-                  <div className="flex items-start justify-between gap-4">
-                    <span
-                      className={`grid h-14 w-14 shrink-0 place-items-center rounded-2xl border transition-transform duration-300 group-hover:scale-105 ${accentBadge[capability.accent]}`}
-                    >
-                      <capability.icon size={24} strokeWidth={1.75} />
-                    </span>
-                    <span className="chip chip-new">New</span>
-                  </div>
+                  <span
+                    className={`grid h-12 w-12 shrink-0 place-items-center rounded-2xl border transition-transform duration-300 group-hover:scale-105 ${accentBadge[capability.accent]}`}
+                  >
+                    <capability.icon size={22} strokeWidth={1.75} />
+                  </span>
 
-                  <p className="eyebrow mt-6">{capability.kicker}</p>
-                  <h3 className="font-display mt-2 text-xl leading-snug font-bold sm:text-[1.4rem]">
+                  <p className="eyebrow mt-5">{capability.kicker}</p>
+                  <h3 className="font-display mt-2 text-lg leading-snug font-bold">
                     {capability.name}
                   </h3>
-                  <p className="mt-3 text-[0.9375rem] leading-relaxed text-ink-500">
+                  <p className="mt-2.5 text-[0.9375rem] leading-relaxed text-ink-500">
                     {capability.summary}
                   </p>
 
-                  <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700">
+                  <span className="mt-auto inline-flex items-center gap-1.5 pt-5 text-sm font-semibold text-brand-700">
                     How it works
                     <ArrowUpRight
                       size={15}
@@ -281,7 +504,7 @@ export default function Home() {
 
           <Reveal index={2} className="mt-10 flex justify-center">
             <Link href="/features" className="btn btn-ink">
-              Browse every module
+              Browse every feature
               <ArrowRight size={17} strokeWidth={2.25} />
             </Link>
           </Reveal>
@@ -344,11 +567,11 @@ export default function Home() {
       <section className="section">
         <div className="shell">
           <SectionHeading
-            eyebrow="Campus and safety"
+            eyebrow="Campus, transport and safety"
             title="The part parents ask about first."
-            lede="Identity at the gate, a matched guardian at dismissal, a visitor register that closes itself, and a store room whose numbers add up."
+            lede="The bus on a live map, identity at the gate, a matched guardian at dismissal, passes for event day, and a visitor register that closes itself."
           />
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {moduleGroups[0].modules.map((module, index) => (
               <Reveal key={module.name} index={index}>
                 <ModuleCard module={module} accent="saffron" />
@@ -359,6 +582,8 @@ export default function Home() {
       </section>
 
       <Standards />
+
+      <Maker />
 
       {/* ================================ FAQ ================================ */}
       <section className="section">

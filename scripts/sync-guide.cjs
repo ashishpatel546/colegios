@@ -18,7 +18,7 @@ const ROOT = path.join(__dirname, "..");
 
 const files = [
   ["COLEGIOS_PRODUCT_GUIDE.md", "content/product-guide.md"],
-  ["COLEGIOS_PRODUCT_GUIDE.pdf", "public/downloads/colegios-product-guide.pdf"],
+  ["COLEGIOS_PRODUCT_GUIDE.pdf", "content/colegios-product-guide.pdf"],
 ];
 
 for (const [from, to] of files) {

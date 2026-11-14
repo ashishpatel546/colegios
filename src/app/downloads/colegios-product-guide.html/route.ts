@@ -81,7 +81,6 @@ function markSvg() {
 
 export function GET() {
   const guide = getProductGuide("download");
-  const online = `${site.url}/product-guide`;
   const toc = `<ol>${guide.sections
     .map((s) => `<li><a href="#${s.id}">${escape(s.label)}</a></li>`)
     .join("")}</ol>`;
@@ -94,7 +93,7 @@ export function GET() {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${escape(guide.title)}</title>
 <meta name="description" content="${escape(guide.subtitle)}">
-<link rel="canonical" href="${online}">
+<meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=JetBrains+Mono:wght@500&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap">
@@ -122,7 +121,7 @@ export function GET() {
 </div>
 <footer class="foot"><div>
   <span>${escape(site.company)} · <a href="tel:${phone.replace(/[^+\d]/g, "")}">${escape(phone)}</a> · <a href="mailto:${site.email}">${site.email}</a> · <a href="mailto:${site.supportEmail}">${site.supportEmail}</a></span>
-  <span>Latest version: <a href="${online}">${online.replace(/^https?:\/\//, "")}</a></span>
+  <span><a href="${site.url}">${site.url.replace(/^https?:\/\//, "")}</a></span>
 </div></footer>
 <script>(${enhanceGuide.toString()})(document.getElementById("guide"), document.getElementById("guide-toc"));</script>
 </body>

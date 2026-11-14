@@ -3,14 +3,16 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useReducedMotionSafe } from "@/lib/useReducedMotionSafe";
-import { Boxes, IdCard, ScanLine, UserRoundCheck, Wallet } from "lucide-react";
+import { Boxes, Bus, IdCard, ScanLine, Ticket, UserRoundCheck, Wallet } from "lucide-react";
 import { useNowSeconds } from "@/lib/useNowSeconds";
 
 const feed = [
+  { icon: Bus, text: "Bus 4 · boarded", meta: "Parent notified", tone: "text-leaf-300" },
   { icon: IdCard, text: "Gate 1 · ID verified", meta: "Class VIII-B", tone: "text-brand-300" },
   { icon: UserRoundCheck, text: "Visitor pass issued", meta: "Reception", tone: "text-saffron-400" },
   { icon: Wallet, text: "Fee receipt raised", meta: "₹ 12,400", tone: "text-leaf-300" },
   { icon: Boxes, text: "Lab stock issued", meta: "12 units", tone: "text-brand-300" },
+  { icon: Ticket, text: "Event pass scanned", meta: "Car DL 3C 4417", tone: "text-brand-300" },
   { icon: ScanLine, text: "Pickup confirmed", meta: "Guardian matched", tone: "text-saffron-400" },
 ] as const;
 

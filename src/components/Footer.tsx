@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { ArrowUpRight, Mail, Phone } from "lucide-react";
-import { moduleGroups, navLinks, site } from "@/lib/site";
+import { ArrowRight, ArrowUpRight, Gift, Mail, Phone } from "lucide-react";
+import { moduleGroups, navLinks, pricing, site } from "@/lib/site";
 import { AppMeSoftOnDark, ColegiosMark } from "./Brand";
 
 export default function Footer() {
@@ -32,8 +32,9 @@ export default function Footer() {
             </div>
 
             <p className="mt-6 max-w-sm text-[0.95rem] leading-relaxed text-brand-100/70">
-              One system for admissions, fees, academics, stock and campus safety — built for
-              Indian schools by <AppMeSoftOnDark className="text-[0.95rem]" suffix={null} />.
+              One system for admissions, fees, academics, transport, events and campus safety,
+              built for Indian schools by{" "}
+              <AppMeSoftOnDark className="text-[0.95rem]" suffix={null} />.
             </p>
 
             <div className="mt-7 flex flex-col gap-3 text-[0.95rem]">
@@ -82,9 +83,9 @@ export default function Footer() {
             </ul>
           </nav>
 
-          <nav aria-label="Modules">
+          <nav aria-label="Features">
             <h2 className="font-mono text-[0.6875rem] tracking-[0.2em] text-white/45 uppercase">
-              Modules
+              Features
             </h2>
             <ul className="mt-5 space-y-3 text-[0.95rem]">
               {moduleGroups.map((group) => (
@@ -110,12 +111,23 @@ export default function Footer() {
 
           <div>
             <h2 className="font-mono text-[0.6875rem] tracking-[0.2em] text-white/45 uppercase">
-              See it running
+              See it in your school
             </h2>
-            <p className="mt-5 text-[0.95rem] leading-relaxed text-brand-100/70">
-              We quote per school rather than publishing a number that fits nobody. Book a walkthrough
-              and you will have a written quote the same week.
+            <p className="font-display mt-5 text-xl leading-snug font-bold text-white">
+              Your whole school, on one screen, from {pricing.from} per student a month.
             </p>
+            <p className="mt-3 text-[0.95rem] leading-relaxed text-brand-100/70">
+              Tell us how your school runs. We will show you Colegios working with your own classes
+              and fee structure, usually within the week.
+            </p>
+            <Link
+              href="/#offers"
+              className="group mt-5 flex w-fit items-center gap-2 rounded-full bg-white/8 px-3.5 py-2 text-sm font-semibold text-saffron-300 ring-1 ring-white/12 transition-colors hover:bg-white/14"
+            >
+              <Gift size={15} />
+              Four premium modules free right now
+              <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
+            </Link>
             <Link href="/contact" className="btn btn-primary mt-6 w-full sm:w-auto">
               Book a demo
             </Link>

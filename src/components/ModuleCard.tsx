@@ -1,12 +1,20 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import type { Module } from "@/lib/site";
+import type { Module, ModuleTag } from "@/lib/site";
 
 const accents = {
   brand: "bg-brand-50 text-brand-700 border-brand-100",
   leaf: "bg-leaf-50 text-leaf-700 border-leaf-100",
   saffron: "bg-saffron-50 text-saffron-700 border-saffron-200",
 } as const;
+
+const tagStyles: Record<ModuleTag, string> = {
+  "Most popular": "chip-new",
+  "Most loved": "chip-new",
+  Beta: "chip-brand",
+  "Free in offer": "chip-live",
+  "Free for now": "chip-live",
+};
 
 export default function ModuleCard({
   module,
@@ -16,6 +24,9 @@ export default function ModuleCard({
   accent?: keyof typeof accents;
 }) {
   const Icon = module.icon;
+  const tags = module.tags ?? [];
+  // "Most popular" already says it is worth a look; a third chip would crowd the corner.
+  const showNew = module.isNew && !tags.includes("Most popular") && !tags.includes("Most loved");
 
   const body = (
     <>
@@ -26,7 +37,16 @@ export default function ModuleCard({
         >
           <Icon size={21} strokeWidth={1.75} />
         </span>
-        {module.isNew ? <span className="chip chip-new">New</span> : null}
+        {showNew || tags.length ? (
+          <span className="flex flex-wrap justify-end gap-1.5">
+            {showNew ? <span className="chip chip-new">New</span> : null}
+            {tags.map((tag) => (
+              <span key={tag} className={`chip ${tagStyles[tag]}`}>
+                {tag}
+              </span>
+            ))}
+          </span>
+        ) : null}
       </div>
 
       <h3 className="font-display mt-5 text-lg leading-snug font-bold">{module.name}</h3>
@@ -45,13 +65,15 @@ export default function ModuleCard({
     </>
   );
 
-  const className = "card card-hover group flex flex-col overflow-hidden p-6 h-full";
+  const className = "card card-hover group flex flex-col overflow-hidden p-6 h-full scroll-mt-40";
 
   return module.href ? (
-    <Link href={module.href} className={className}>
+    <Link id={module.id} href={module.href} className={className}>
       {body}
     </Link>
   ) : (
-    <article className={className}>{body}</article>
+    <article id={module.id} className={className}>
+      {body}
+    </article>
   );
 }

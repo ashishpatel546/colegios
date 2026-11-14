@@ -45,7 +45,7 @@ html body, .markdown-preview { font-size: 11.5px !important; line-height: 1.4 !i
 > | 🎁 Free Module | What your school gets |
 > |---|---|
 > | 🚪 **Visitor Management** | Every visitor logged at the gate with QR, searchable and exportable |
-> | 👆 **Biometric Attendance** | Fingerprint/face check-in plus geo-fenced mobile attendance for staff |
+> | 👆 **Biometric Attendance** ⭐ *Most loved* | No proxies, no disputes: staff attendance you can finally trust |
 > | 📦 **Inventory & Store** | QR/barcode counter sales, stock tracking, borrow-lend with overdue alerts |
 > | 📖 **Library Management** | Book cataloguing, issue/return tracking, automatic late fees |
 >
@@ -83,9 +83,11 @@ html body, .markdown-preview { font-size: 11.5px !important; line-height: 1.4 !i
 >
 > 🆓 **Currently free on every plan.** Try it during your demo.
 
-## 🚌 NEW: Transport Management with Live Bus Tracking (Beta)
+## 🚌 NEW: Transport Management with Live Bus Tracking (Beta) · ⭐ Most Popular
 
 > **"Where is the bus?" Parents no longer need to call the office to ask.**
+>
+> Already the feature schools ask for first: live vehicle tracking, plus live alerts at every pick-up and drop.
 >
 > Your buses, routes, stops, drivers and transport fees now run inside Colegios, and parents can watch the bus arrive on a live map.
 >
@@ -98,6 +100,20 @@ html body, .markdown-preview { font-size: 11.5px !important; line-height: 1.4 !i
 >
 > 🧪 **Now in Beta.** Ask for it during your demo and be among the first schools to use it.
 > 👑 **Platinum schools get Transport Management complimentary, free for now.**
+
+## 🎟️ NEW: Event Management with Secure QR Passes (Beta)
+
+> **Annual day. Sports meet. PTM. Graduation. The gate is never busier, and never harder to control.**
+>
+> Paper passes get copied, the guest list lives on a clipboard, and nobody knows whose car is parked inside. Colegios Event Management puts every visitor and authorised person on a secure QR pass.
+>
+> | 🎟️ Guests get | 🏫 The school gets |
+> |---|---|
+> | 📲 A secure QR pass on their phone | 📋 One guest list per event, for visitors and authorised persons |
+> | 🚗 Their vehicle details on the pass, for a quick check at the gate | 🚪 Every pass scanned at the gate: valid passes in, everyone else stopped |
+> | ⚡ Quick entry, with no paper register at the gate | 🧾 A full record of who came, when, and in which vehicle |
+>
+> 🧪 **Now in Beta.** 👑 **Included in Platinum, and free while in Beta.**
 
 ---
 
@@ -114,6 +130,7 @@ Every day without a digital system costs your school time, money and trust:
 | No visibility for management | Running blind on collections and performance |
 | No verification at the gate | Anyone can claim a child at pickup or walk onto campus unrecorded |
 | No visibility of the school bus | Worried parents calling the office, and no record of who boarded or got off |
+| Paper passes on event days | Uninvited people walk in, and nobody knows whose car is parked on campus |
 
 > ✅ **Colegios removes every one of these problems, in one unified platform.**
 
@@ -127,6 +144,7 @@ Tick every statement that is true for your school:
 - [ ] Visitors sign a paper register, or no register at all
 - [ ] Parents call to ask where the school bus is, and transport fees are tracked in a separate register
 - [ ] Our ID cards are just a laminated photo
+- [ ] On annual day or a sports meet, entry runs on paper passes and cars park unchecked
 - [ ] Staff attendance is a signature register, or a standalone biometric machine nobody reconciles
 - [ ] We pay separately for library, inventory or HR/payroll software, or manage them on paper
 - [ ] Teachers spend evenings making question papers by hand
@@ -151,11 +169,12 @@ A typical school ERP stops at attendance, fees and exams. Everything else means 
 | Biometric attendance machine software | Software #5 | ✅ Built in, and linked to payroll |
 | Visitor register at the gate | Paper, or software #6 | ✅ Built in |
 | Bus GPS tracking & transport register | Software #7 | ✅ Built in, with live tracking for parents *(Beta)* |
+| Event passes & entry control | Paper passes, or software #8 | ✅ Built in, with secure QR passes *(Beta)* |
 | SMS packs for parent messages | Recurring cost | ✅ Free in-app notifications |
 | AI tools for teachers | Separate subscriptions | ✅ AI Assist, AI Tutor and Voice AI |
 
-> ### 🔁 7 vendors · 7 bills · 7 logins &nbsp;→&nbsp; **1 Colegios**
-> One login, one data record, one support team, one bill. Your data finally connects: biometric check-ins feed payroll, store sales feed reports, transport fees feed student fees, and everything feeds the parent app.
+> ### 🔁 8 vendors · 8 bills · 8 logins &nbsp;→&nbsp; **1 Colegios**
+> One login, one data record, one support team, one bill. Your data finally connects: biometric check-ins feed payroll, store sales feed reports, transport fees feed student fees, event passes are checked at your own gate, and everything feeds the parent app.
 
 ---
 
@@ -166,9 +185,10 @@ A typical school ERP stops at attendance, fees and exams. Everything else means 
 | Pickup with no real verification | QR-verified pickup with PIN authentication, logged every time |
 | No visitor log, or a paper register at the gate | QR-based visitor management, searchable and exportable. **Free under our current offer** |
 | ID cards that are just a laminated photo | Secure, scannable QR ID cards with instant gate verification |
-| No biometric staff attendance, or a machine that doesn't talk to the software | Fingerprint/face and geo-fenced attendance, linked to HR & payroll. **Free under our current offer** |
+| No biometric staff attendance, or a machine that doesn't talk to the software | Biometric staff attendance, linked to HR & payroll. **Free under our current offer** |
 | Library, inventory and HR sold as separate software | All built in, as one operating system for the school |
 | Bus tracking from a separate GPS vendor, with nothing for parents | Transport and live bus tracking in the same parent app *(Beta)* |
+| Event entry run on paper passes and a guest list on a clipboard | Secure QR event passes with vehicle details, scanned at the gate *(Beta)* |
 | AI charged as an expensive add-on, or not offered at all | AI Assist + AI Tutor included from the entry plan, **plus a Voice AI Assistant, free** |
 | Per-module pricing that grows every renewal | Four clear plans, no surprise line items |
 | Slow, ticket-based support | Dedicated support, 24–36 hour resolution |
@@ -187,6 +207,7 @@ A typical school ERP stops at attendance, fees and exams. Everything else means 
 | 📊 | **Data-driven decisions** | One-click reports for management, any time |
 | 🔐 | **A secure campus** | QR-verified pickup, visitor logs and tamper-proof ID cards |
 | 🚌 | **Safe journeys** | Parents see the bus live and know when their child boards and is dropped |
+| 🎟️ | **Calm event days** | Only guests with a valid QR pass get in, and every vehicle is accounted for |
 | 📈 | **Grows with you** | From 100 to 5,000+ students, on a plan sized to fit |
 
 ---
@@ -244,14 +265,16 @@ Every visitor (parent, vendor or courier) is logged with **name, mobile number a
 
 ---
 
-### 👆 5. Biometric & Geo-Fenced Staff Attendance &nbsp;·&nbsp; 🎁 *FREE under current offer*
+### 👆 5. Biometric Staff Attendance &nbsp;·&nbsp; ⭐ *Most loved* &nbsp;·&nbsp; 🎁 *FREE under current offer*
 
-> **"Attendance that can't be faked, from the gate or from anywhere on campus."**
+> **"No proxies. No disputes. Just attendance you can trust."**
 
-- 🖐️ Fingerprint / face check-in at a kiosk
-- 📍 Geo-fenced mobile check-in from anywhere on campus
-- 📴 Bypass window when devices are briefly offline
-- ✍️ Full manual override when needed
+The feature principals tell us they love most, because it ends the oldest argument in the staff room.
+
+- ✅ **Every check-in is genuine.** Nobody can mark attendance for a colleague
+- 💼 **Payroll that matches reality.** Salaries reflect the days actually worked, with no reconciling by hand
+- 📊 **The whole staff picture in one click.** Who is in, who is late, who is on leave
+- 🤫 **How it works is our secret. Seeing it is not.** Ask for it in your demo
 
 ---
 
@@ -287,7 +310,7 @@ Fee collection trends, collected vs. pending dues, waive-off trends, and dedicat
 
 ---
 
-### 🚌 9. Transport Management & Live Bus Tracking &nbsp;·&nbsp; 🧪 *Beta* &nbsp;·&nbsp; 👑 *Free on Platinum for now*
+### 🚌 9. Transport Management & Live Bus Tracking &nbsp;·&nbsp; ⭐ *Most popular* &nbsp;·&nbsp; 🧪 *Beta* &nbsp;·&nbsp; 👑 *Free on Platinum for now*
 
 > **"Every child, every bus, every stop, accounted for."**
 
@@ -305,11 +328,27 @@ Fee collection trends, collected vs. pending dues, waive-off trends, and dedicat
 
 ---
 
+### 🎟️ 10. Event Management with Secure QR Passes &nbsp;·&nbsp; 🧪 *Beta* &nbsp;·&nbsp; 👑 *Free on Platinum for now*
+
+> **"Annual day, sports meet or PTM: only people with a pass get in."**
+
+| Step | What happens |
+|:---:|---|
+| 1️⃣ | The school creates the event and its guest list: visitors, parents and authorised persons |
+| 2️⃣ | Each guest receives a secure QR pass on their phone |
+| 3️⃣ | Vehicle details are on the pass, so the gate knows which cars are expected |
+| 4️⃣ | Gate staff scan every pass: valid passes enter and are logged, anyone else is stopped |
+| 5️⃣ | After the event, the school has a complete record of who came, when, and in which vehicle |
+
+🛡️ **The same idea as our QR ID cards and visitor management:** nobody is on campus without a record.
+
+---
+
 ## 📦 Also Included
 
 | Module | What it does |
 |---|---|
-| 🎒 **Admissions, Attendance & Exams** | The school year digitised, with parents notified the same day |
+| 🎒 **Admissions, Attendance & Exams** | The school year digitised. Parents get **live attendance updates at no extra cost** to the school |
 | 📚 **Homework & Student Leaves** | Assignment tracking, submissions and leave-approval workflows |
 | 💳 **Smart Fee Engine** | Partial payments, waivers, custom fee heads, monthly to annual billing, digital receipts |
 | 🔔 **Free In-App Notifications** | Unlimited messages to all parents, all staff or specific classes, with **no per-SMS cost, ever** |
@@ -355,12 +394,15 @@ Four straightforward plans, each a complete, working slice of the platform. Star
 | Dedicated Priority Support | — | — | — | ✅ |
 | 🚌 Transport Management *(Beta)* | 🧪 | 🧪 | 🧪 | 🆓 |
 | 📍 Live Bus Tracking *(Beta)* | 🧪 | 🧪 | 🧪 | 🧪 |
+| 🎟️ Event Management *(Beta)* | 🧪 | 🧪 | 🧪 | 🆓 |
 
 **Legend:** ✅ Included · 🆓 Free for now · 🎁 Free until your first renewal (current offer) · 🧪 Beta, available on request · — Available on a higher plan
 
 > 🧩 **Every plan can be tailored.** Need one module from a higher plan without the rest? Just tell us.
 >
 > 🚌 **Transport Management and Live Bus Tracking are in Beta.** On **Platinum, Transport Management is complimentary, free for now.** On other plans, ask us to switch it on. Pricing will be announced when it leaves Beta.
+>
+> 🎟️ **Event Management is in Beta.** It is **included in Platinum, and free while in Beta.** On other plans, ask us to switch it on.
 
 ---
 
@@ -373,6 +415,7 @@ The offer lets you *try* our premium modules. **Platinum lets you keep them, and
 | Visitor, Biometric, Inventory, Library | 🎁 Free **until first renewal**, then charged separately | ✅ **Always included**, never an add-on bill |
 | 👥 Full HR & Payroll | Biometric attendance only | ✅ Leave policies, salary setup, automated payslips, with biometric check-ins flowing straight into payroll |
 | 🚌 Transport Management *(Beta)* | On request | ✅ **Complimentary, free for now** |
+| 🎟️ Event Management *(Beta)* | On request | ✅ **Included, free while in Beta** |
 | 🚀 Dedicated Priority Support | — | ✅ Your school goes to the front of the queue |
 | 💰 Budget certainty | Price changes at renewal as modules are added | ✅ One price that covers everything |
 | 🧠 Operating system | Most of it | ✅ **The complete operating system for your school** |
@@ -382,6 +425,7 @@ The offer lets you *try* our premium modules. **Platinum lets you keep them, and
 - [ ] Your school has come to rely on the free modules (library, visitor log, biometric, store) and wants to keep them without add-on bills
 - [ ] You process staff salaries every month
 - [ ] Your school runs its own buses (Transport Management comes free with Platinum for now)
+- [ ] You host annual days, sports meets or PTMs and want control over who comes in (Event Management is included in Platinum)
 - [ ] You have many staff whose attendance and leave you need to manage
 - [ ] You want one bill, with no add-on charges at renewal
 - [ ] You want the fastest possible support response
@@ -402,6 +446,7 @@ The offer lets you *try* our premium modules. **Platinum lets you keep them, and
 | AI | Paid add-on, or none | AI Assist, AI Tutor, and **free Voice AI** |
 | Notifications | Paid SMS / third party | Free, in-app, real-time |
 | School bus | Separate GPS vendor, or none | Built in, with live tracking for parents *(Beta)* |
+| School events | Paper passes, or none | Secure QR passes with vehicle details *(Beta)* |
 | Fee management | Basic | Partial payments, waivers and discounts |
 | Setup & onboarding | School's responsibility | Done by the AppMe team |
 | Customisation | Limited | Fully configurable |
@@ -444,9 +489,9 @@ Colegios isn't a one-product startup. It's built by **AppMe Soft Private Limited
 | Step | Action |
 |:---:|---|
 | 1️⃣ | **Call or WhatsApp** us to schedule a live demo |
-| 2️⃣ | **See every feature live** for your school (including the Voice AI and live bus tracking) and find the plan that fits |
-| 3️⃣ | **Start with a low-cost trial** (T&C apply) |
-| 4️⃣ | **Continue only if you're fully satisfied.** No charges until you're happy |
+| 2️⃣ | **See every feature live** for your school (including the Voice AI, live bus tracking and event passes) and find the plan that fits |
+| 3️⃣ | **Try it with your own school.** Talk to our team and we'll set up a trial around your school's needs |
+| 4️⃣ | **Go live with confidence.** We stay with you through onboarding, so your team is comfortable from day one |
 
 🛠️ **We handle everything:** data setup, student import, staff onboarding and training. Your team just needs to show up.
 
@@ -466,4 +511,4 @@ Colegios isn't a one-product startup. It's built by **AppMe Soft Private Limited
 
 ---
 
-<sub>Prices are per active student per month, exclusive of GST. ₹5.26 applies to annual billing for schools with more than 2,000 students. A minimum billing of 50 students applies. Free-module offer: Visitor Management, Biometric Attendance, Inventory & Store and Library Management are free until the end of the first enrolled billing period and are billed from the next renewal. The Voice AI Assistant is free for a limited period. Transport Management and Live Bus Tracking are in Beta and available on request; Transport Management is complimentary on Platinum for a limited period; pricing will be announced when they leave Beta. T&C apply.</sub>
+<sub>Prices are per active student per month, exclusive of GST. ₹5.26 applies to annual billing for schools with more than 2,000 students. A minimum billing of 50 students applies. Free-module offer: Visitor Management, Biometric Attendance, Inventory & Store and Library Management are free until the end of the first enrolled billing period and are billed from the next renewal. The Voice AI Assistant is free for a limited period. Transport Management and Live Bus Tracking are in Beta and available on request; Transport Management is complimentary on Platinum for a limited period; pricing will be announced when they leave Beta. Event Management is in Beta; it is included in Platinum and free while in Beta, and available on request on other plans. Trials are arranged with our team to suit each school. T&C apply.</sub>

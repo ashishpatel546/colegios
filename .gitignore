@@ -43,3 +43,6 @@ next-env.d.ts
 # Playwright / local review artefacts
 .playwright-mcp/
 *.png.tmp
+
+# The example env file documents settings and holds no secrets
+!.env.example

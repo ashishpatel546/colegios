@@ -6,6 +6,8 @@ import {
   BarChart3,
   Bell,
   BookOpen,
+  Bot,
+  Briefcase,
   Boxes,
   Bus,
   CalendarDays,
@@ -13,6 +15,7 @@ import {
   Cloud,
   DatabaseBackup,
   CreditCard,
+  Mic,
   Fingerprint,
   Globe,
   GraduationCap,
@@ -28,6 +31,8 @@ import {
   ScanLine,
   ShieldCheck,
   Smartphone,
+  Sparkles,
+  Ticket,
   UserRoundCheck,
   Users,
   Wallet,
@@ -47,9 +52,9 @@ export const site = {
 
 export const navLinks = [
   { name: "Home", href: "/" },
-  { name: "Modules", href: "/features" },
+  { name: "Features", href: "/features" },
+  { name: "Offers", href: "/#offers" },
   { name: "Campus Safety", href: "/security" },
-  { name: "Product Guide", href: "/product-guide" },
   { name: "Contact", href: "/contact" },
 ] as const;
 
@@ -131,14 +136,136 @@ export const newCapabilities: Highlight[] = [
 ];
 
 /* ------------------------------------------------------------------
+   The current offer, shown on the home page (/#offers).
+
+   Deliberately no end date: the offer reads as running now. Keep every
+   line here true; when the terms change, change them here and the home
+   page, features page and FAQ follow.
+   ------------------------------------------------------------------ */
+
+export const pricing = {
+  from: "₹5.26",
+  unit: "per student per month",
+  perDay: "less than 18 paise a day",
+  // ₹5.26 ÷ 30 = ₹0.175, and ₹5.26 × 12 ÷ 365 = ₹0.173. Under 18 paise either way.
+  note: "Starting price on annual billing for schools with more than 2,000 students, exclusive of GST. A minimum of 50 students applies. Your quote depends on enrolment, billing cycle and the modules you choose.",
+} as const;
+
+export const offer = {
+  freeModules: [
+    {
+      name: "Visitor management",
+      line: "Every visitor logged at the gate with a QR pass",
+      icon: UserRoundCheck,
+    },
+    {
+      name: "Biometric attendance",
+      line: "Our most loved feature. No proxies, no disputes",
+      icon: Fingerprint,
+      tag: "Most loved",
+    },
+    {
+      name: "Inventory and store",
+      line: "Counter sales, stock levels and borrow-lend tracking",
+      icon: Boxes,
+    },
+    {
+      name: "Library management",
+      line: "Catalogue, issue and return, automatic late fees",
+      icon: Library,
+    },
+  ],
+  terms:
+    "Free from the day you enrol until the end of your first billing period. They are billed only from your next renewal.",
+  alsoNew: [
+    {
+      name: "Transport and live bus tracking",
+      status: "Beta",
+      line: "Most requested by parents",
+      icon: Bus,
+      href: "/features#transport",
+    },
+    {
+      name: "Event management",
+      status: "Beta",
+      line: "QR passes with vehicle details",
+      icon: Ticket,
+      href: "/features#event-management",
+    },
+    {
+      name: "Voice AI Assistant",
+      status: "Free for now",
+      line: "Ask the school a question out loud",
+      icon: Mic,
+      href: "/features#voice-ai",
+    },
+  ],
+} as const;
+
+/* ------------------------------------------------------------------
+   The two launches that lead the home page.
+   ------------------------------------------------------------------ */
+
+export const spotlights = [
+  {
+    id: "transport",
+    eyebrow: "Most popular · Beta",
+    name: "Transport and live bus tracking",
+    line: "\"Where is the bus?\" Parents stop calling the office to ask.",
+    icon: Bus,
+    accent: "leaf",
+    points: [
+      "Parents see the bus on a live map during the trip, until their own child is dropped",
+      "Alerts when the child boards, reaches school, is dropped home or misses the bus",
+      "A \"bus is almost at your stop\" alert, with an estimated time",
+      "A live map of every vehicle for the school, and an alert if one stops reporting",
+      "Routes, stops, drivers and transport fees in the same system, with no GPS hardware to buy",
+    ],
+    href: "/features#transport",
+  },
+  {
+    id: "event-management",
+    eyebrow: "New · Beta",
+    name: "Event management",
+    line: "Annual day, sports meet or PTM: only people with a pass get in.",
+    icon: Ticket,
+    accent: "saffron",
+    points: [
+      "Create the event and its list of guests and authorised persons",
+      "Every guest receives a secure QR pass on their phone",
+      "Vehicle details sit on the pass, so the gate knows which cars are expected",
+      "Gate staff scan each pass: valid passes in, everyone else stopped and logged",
+      "A complete record of who came, when, and in which vehicle",
+    ],
+    href: "/features#event-management",
+  },
+] as const;
+
+/** The newest additions, listed beside the Features page header. */
+export const latestAdditions = [
+  { name: "Transport and live bus tracking", icon: Bus, href: "/features#transport" },
+  { name: "Event management", icon: Ticket, href: "/features#event-management" },
+  { name: "Voice AI Assistant", icon: Mic, href: "/features#voice-ai" },
+  { name: "HMAC-secured QR ID cards", icon: IdCard, href: "/security#qr-id-cards" },
+  { name: "Secure student pickup", icon: ScanLine, href: "/security#secure-pickup" },
+  { name: "Visitor management", icon: UserRoundCheck, href: "/security#visitor-management" },
+] as const;
+
+/* ------------------------------------------------------------------
    Full module catalogue
    ------------------------------------------------------------------ */
+
+/** Status labels shown on a module card, in addition to "New". */
+export type ModuleTag = "Beta" | "Free in offer" | "Free for now" | "Most popular" | "Most loved";
 
 export type Module = {
   name: string;
   description: string;
   icon: LucideIcon;
   isNew?: boolean;
+  tags?: ModuleTag[];
+  /** Anchor id on /features, so other pages can link straight to the card. */
+  id?: string;
   href?: string;
 };
 
@@ -153,10 +280,28 @@ export type ModuleGroup = {
 export const moduleGroups: ModuleGroup[] = [
   {
     id: "campus-safety",
-    title: "Campus and safety",
-    intent: "Control who enters, who leaves and what the school owns.",
+    title: "Campus, transport and safety",
+    intent: "Control who enters, who leaves, who is on the bus and what the school owns.",
     accent: "saffron",
     modules: [
+      {
+        id: "transport",
+        name: "Transport and live bus tracking",
+        description:
+          "Parents watch the bus live and are alerted when their child boards, reaches school and is dropped home.",
+        icon: Bus,
+        isNew: true,
+        tags: ["Most popular", "Beta"],
+      },
+      {
+        id: "event-management",
+        name: "Event management",
+        description:
+          "Secure QR passes for guests and authorised persons, with vehicle details, checked at the gate on event day.",
+        icon: Ticket,
+        isNew: true,
+        tags: ["Beta"],
+      },
       {
         name: "HMAC-secured QR ID cards",
         description:
@@ -179,6 +324,7 @@ export const moduleGroups: ModuleGroup[] = [
           "Time-bound visitor passes, host approval, live on-campus roster and an evacuation list.",
         icon: UserRoundCheck,
         isNew: true,
+        tags: ["Free in offer"],
         href: "/security#visitor-management",
       },
       {
@@ -187,6 +333,7 @@ export const moduleGroups: ModuleGroup[] = [
           "Uniforms, books, lab and sports stock tracked from purchase to issue, with reorder alerts.",
         icon: Boxes,
         isNew: true,
+        tags: ["Free in offer"],
         href: "/security#inventory-management",
       },
       {
@@ -196,10 +343,12 @@ export const moduleGroups: ModuleGroup[] = [
         icon: QrCode,
       },
       {
-        name: "Transport tracking",
+        id: "biometric-attendance",
+        name: "Biometric staff attendance",
         description:
-          "Route, stop and bus assignment with boarding scans, so a missed bus is noticed immediately.",
-        icon: Bus,
+          "No proxies, no disputed registers. Every check-in is genuine, and salaries match the days actually worked.",
+        icon: Fingerprint,
+        tags: ["Most loved", "Free in offer"],
       },
     ],
   },
@@ -224,7 +373,7 @@ export const moduleGroups: ModuleGroup[] = [
       {
         name: "Attendance",
         description:
-          "Marked from a phone or auto-filled from the morning gate scan, with absentee alerts to parents.",
+          "Parents get a live update the moment their child is marked, at no extra cost to the school.",
         icon: ClipboardCheck,
       },
       {
@@ -249,6 +398,7 @@ export const moduleGroups: ModuleGroup[] = [
         description:
           "Catalogue, issue and return, reservations and automatic late-fee provisioning.",
         icon: Library,
+        tags: ["Free in offer"],
       },
       {
         name: "Certificates",
@@ -290,14 +440,43 @@ export const moduleGroups: ModuleGroup[] = [
       {
         name: "Payroll and staff HR",
         description:
-          "Geo-fenced biometric attendance, leave, salary calculation and downloadable payslips.",
-        icon: Fingerprint,
+          "Leave, salary calculation and downloadable payslips, with staff check-ins flowing straight in.",
+        icon: Briefcase,
       },
       {
         name: "Accounts and expenses",
         description:
           "Vouchers, expense heads and inventory purchases that reconcile against collection.",
         icon: LineChart,
+      },
+    ],
+  },
+  {
+    id: "ai",
+    title: "AI built in",
+    intent: "Help for teachers, students and the office, without a separate subscription.",
+    accent: "saffron",
+    modules: [
+      {
+        name: "AI Assist for teachers",
+        description:
+          "Lesson plans, question papers, worksheets, quizzes and topic explanations, drafted in seconds.",
+        icon: Sparkles,
+      },
+      {
+        name: "AI Tutor for students",
+        description:
+          "A personal tutor, any hour, that explains concepts step by step and sets practice at the student's pace.",
+        icon: Bot,
+      },
+      {
+        id: "voice-ai",
+        name: "Voice AI Assistant",
+        description:
+          "Ask \"How many students are absent today?\" or \"What is pending for Class 5?\" and hear the answer.",
+        icon: Mic,
+        isNew: true,
+        tags: ["Free for now"],
       },
     ],
   },
@@ -368,6 +547,16 @@ export type DayEvent = {
 
 export const schoolDay: DayEvent[] = [
   {
+    time: "07:05",
+    minutes: 7 * 60 + 5,
+    label: "Bus 4 leaves the depot",
+    module: "Transport",
+    detail:
+      "Parents on the route see the bus on a live map. Each one is told the moment their child boards, and again when the bus reaches school.",
+    icon: Bus,
+    accent: "leaf",
+  },
+  {
     time: "07:40",
     minutes: 7 * 60 + 40,
     label: "Gate opens",
@@ -426,6 +615,16 @@ export const schoolDay: DayEvent[] = [
       "Each guardian scans at the gate. The pairing is checked against the authorised list, and the parent is told the moment the child is released.",
     icon: ScanLine,
     accent: "saffron",
+  },
+  {
+    time: "15:30",
+    minutes: 15 * 60 + 30,
+    label: "Dropped home",
+    module: "Transport",
+    detail:
+      "\"Bus is almost at your stop.\" A few minutes later the crew marks the drop, and the parent is notified with the time.",
+    icon: Bus,
+    accent: "leaf",
   },
   {
     time: "16:20",
@@ -565,7 +764,19 @@ export const faqs = [
   },
   {
     q: "What does it cost?",
-    a: "Pricing depends on your enrolment and the modules you switch on, so we quote per school rather than publishing a number that fits nobody. Book a demo and you will have a written quote the same week.",
+    a: "Plans start at ₹5.26 per student per month, which is less than 18 paise a day. That starting price is for annual billing at schools with more than 2,000 students, before GST. Your own quote depends on enrolment, billing cycle and the modules you switch on. Book a demo and you will have it in writing the same week.",
+  },
+  {
+    q: "Can we try it before we commit?",
+    a: "Yes. Tell our team how your school runs and we will set up a trial around it, with your own classes and fee structure, so you judge Colegios on your school and not a sample one.",
+  },
+  {
+    q: "Do live attendance updates for parents cost the school extra?",
+    a: "No. Parents get a live attendance update in the Colegios app the moment their child is marked, at no extra cost to the school. There are no SMS packs to buy and no per-message charges.",
+  },
+  {
+    q: "How does event management keep out people who were not invited?",
+    a: "Every guest and authorised person gets a secure QR pass, with their vehicle details on it where they are driving in. Gate staff scan each pass on the day. A valid pass is let in and logged, and anyone without one is stopped at the gate. Event management is currently in Beta.",
   },
 ];
 
@@ -587,7 +798,7 @@ export const audiences = [
   },
   {
     role: "For parents",
-    line: "Fees, results, diary and a notification the moment their child is collected at the gate.",
+    line: "Live attendance updates at no extra cost, the school bus on a map, and a notification the moment their child is collected.",
     icon: Smartphone,
   },
 ];

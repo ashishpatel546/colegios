@@ -8,12 +8,12 @@ import PageHeader from "@/components/PageHeader";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import SectionNav from "@/components/SectionNav";
-import { moduleCount, moduleGroups, newCapabilities } from "@/lib/site";
+import { latestAdditions, moduleCount, moduleGroups, pricing } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Modules",
+  title: "Features",
   description:
-    "Every Colegios module: admissions, student records, attendance, exams, the fee engine, payroll, library, inventory management, visitor management, QR ID cards and secure student pickup.",
+    "Every Colegios feature: transport with live bus tracking, event management with QR passes, AI Assist and Voice AI, admissions, attendance, exams, the fee engine, payroll, library, inventory, visitor management, QR ID cards and secure student pickup.",
   alternates: { canonical: "/features" },
 };
 
@@ -36,10 +36,10 @@ export default function FeaturesPage() {
               <p className="eyebrow">Newest additions</p>
             </div>
             <ul className="mt-4 space-y-2.5">
-              {newCapabilities.map((capability) => (
-                <li key={capability.slug}>
+              {latestAdditions.map((capability) => (
+                <li key={capability.href}>
                   <Link
-                    href={`/security#${capability.slug}`}
+                    href={capability.href}
                     className="group flex items-center justify-between gap-3 text-[0.9375rem] font-semibold text-ink-700 transition-colors hover:text-brand-700"
                   >
                     <span className="flex items-center gap-2.5">
@@ -121,8 +121,9 @@ export default function FeaturesPage() {
       </section>
 
       <CtaBand
-        title="Pick the modules, and we will show you them running."
-        body="Tell us which parts of the school hurt most right now. The demo starts there, with your fee structure and your class list, not a sample database."
+        title="Four premium modules are free right now."
+        body={`Visitor management, biometric attendance, inventory and library cost nothing until your first renewal, on plans from ${pricing.from} ${pricing.unit}. Tell us which parts of the school hurt most, and the demo starts there.`}
+        action="Claim the offer"
       />
     </>
   );
