@@ -1,0 +1,10 @@
+# Keep Unix line endings in the repository and on every checkout,
+# whichever operating system the file was edited on.
+* text=auto eol=lf
+
+# Binary files: never touch line endings
+*.png binary
+*.jpg binary
+*.ico binary
+*.pdf binary
+*.woff2 binary
